@@ -7,7 +7,7 @@
 4. 표준환경
 
 ### Gitbash를 이용한 CLI의 예시
-- `touch a = a라는 파일 생성
+- `touch` a = a라는 파일 생성
 - mkdir foo = foo라는 파일 생성
 - cd = change directory
 - cd .. = 상위폴더로 이동
