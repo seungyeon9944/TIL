@@ -18,3 +18,4 @@
 워킹 디렉토리에서 포함시킬 파일을 추가하거나 제외할 수 있는 준비 영역
 ## 3. **Repository** 
 저장소, 현재 **버전(commit**, 변경된 파일들을 저장하는 행위)이 기록되어 있음, 영구적으로 저장되는 영역
+![Git의3가지영역](https://s3.ap-south-1.amazonaws.com/s3.studytonight.com/tutorials/uploads/pictures/1622201219-103268.png)
