@@ -3,3 +3,14 @@
 2)	**연산자**
 
 데이터 타입 : 값의 종류와 그 값으로 할 수 있는 ‘동작(연산)’을 결정하는 속성
+
+- Numeric Types : 
+    int(정수), float(실수), complex(복소수)
+- Text Sequence Type : 
+    str(문자열)
+- Sequence Type : 
+    list, tuple, range
+- Non-sequence Type : 
+    set, dict
+- 기타 : 
+    Boolean, None, Functions
