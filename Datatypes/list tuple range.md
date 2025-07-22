@@ -11,3 +11,14 @@
 3) 슬라이싱(Slicing) 
 4) 길이(Length) 
 5) 반복(Iteration)
+
+### 오답노트
+- 0이 250000개 있는 리스트 만들기 
+
+ex. `many_zero_list = '0'*250000`
+
+- **얕은복사의 오류**
+
+`import copy`
+`backup_catalog = copy.deepcopy(catalog)`
+하면 backup_catalog은 catalog가 변해도 변하지않음
