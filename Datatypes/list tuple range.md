@@ -22,3 +22,43 @@ ex. `many_zero_list = '0'*250000`
 `import copy`
 `backup_catalog = copy.deepcopy(catalog)`
 하면 backup_catalog은 catalog가 변해도 변하지않음
+
+
+### 1. assignment 할당
+`a_list = [1,2,3]`
+
+`b_list = a_list`
+
+이때 `b_list`의 결과는 `[1,2,3]`
+
+---
+
+### 2. shallow copy 얕은복사
+`a_list = [1,2,3]`
+
+`b_list = a_list[:]` slicing은 연산자여서 list에 있는 데이터를 갖고와서 넣어주는거라 a_list가 변화해도 변하지않음 (반영x )
+
+`a_list[0] = 100 ` 새로운 데이터 주소를 가리키기 때문, 별도의 리스트가 됨
+
+`print(b_list[0])` 의 결과는 `1`
+
+---
+
+## shallow copy problem 얕은복사의 문제점
+`a_list = [
+    [1,2],
+    [3,4],
+]`
+
+`b_list = a_list[:]`
+
+
+`a_list[0] = [5,6]`
+
+`a_list[1][0] = 7`
+
+`print(b_list[0])`의 결과는 `1,2`
+
+`print(b_list[1][0])`의 결과는 `7`
+
+![얕은복사의오류]("C:\Users\SSAFY\Desktop\얕은복사의오류.png")
