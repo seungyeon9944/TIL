@@ -61,4 +61,4 @@ ex. `many_zero_list = '0'*250000`
 
 `print(b_list[1][0])`의 결과는 `7`
 
-![얕은복사의오류](https://github.com/seungyeon9944/TIL/issues/1#issue-3255305427)
+![얕은복사의오류]<img width="985" height="376" alt="Image" src="https://github.com/user-attachments/assets/60d018f7-f89c-437a-a2a0-36c67ea9169f" />
