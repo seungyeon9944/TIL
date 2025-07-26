@@ -25,3 +25,12 @@ list, tuple, range
 set, dict
 
 5. **Boolean, None, Functions**
+
+
+| 컬렉션명 | 변경 가능 여부 | 순서 존재 여부 |
+| --- | --- | --- |
+| str | X | O
+| list | O | O
+| tuple | X | O
+| dict | O | X
+| set | O | X
