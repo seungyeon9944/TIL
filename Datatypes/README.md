@@ -26,7 +26,7 @@ set, dict
 
 5. **Boolean, None, Functions**
 
-
+# Collection 
 | 컬렉션명 | 변경 가능 여부 | 순서 존재 여부 |
 | --- | --- | --- |
 | str | X | O
@@ -34,3 +34,6 @@ set, dict
 | tuple | X | O
 | dict | O | X
 | set | O | X
+
+# 형변환 
+Basic_Syntax_02 파일부터 정리 ! 
