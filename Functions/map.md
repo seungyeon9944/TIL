@@ -1,3 +1,11 @@
+# map (function, iterable) 
+반복 가능한 데이터구조(iterable)의 모든 요소에 function을 적용하고, 그 결과 값들을 map object로 묶어서 반환
+`numbers = [1,2,3]`
+`result = map(str, numbers)`
+`print(list(result))`
+
+---
+
 ### 오답노트
 
 문제 : 다수의 유저를 등록하고자 한다. 주어진 유저 정보 리스트와 모든 유저를 등록하고, 반환된 유저 정보를 하나의 리스트에 담아 출력할 수 있도록 map 함수를 사용하여 코드를 작성하시오.
