@@ -1,17 +1,17 @@
 # Dictionary 딕셔너리
 - 해시 테이블을 사용하여 **키**와 **값**을 짝지어 저장하는 자료구조
 - 삽입 삭제 검색이 매우 빠름
-- 키는 hashable한 고유한 값 / 값은 중복 가능, 어떤자료형도 저장가능
+- 키는 hashable한 고유한 값 / 값은 중복 가능, 어떤 자료형도 저장가능
 
 
 ### `D.get(k)` 혹은 `D.get(k, v)`
 `.get(key[,default])` 형태로, 키에 연결된 값 (키가 없는경우 None 또는 기본값) 반환
-없는 key를 입력해도 에러가 안나서 확장성 O
+없는 key를 입력해도 에러가 안나서 확장성 
 
 
 ### `D.keys()` 와 `D.values()`
 딕셔너리 키를 모은 객체를 반환 / 딕셔너리 값을 모은 객체를 반환
-사용법 :
+ex.
 `person = {'key1': 'value1', 'key2': 'value2'}`
 `print(person(person.keys())` 하면 `dict_keys(['key1', 'key2'])`
 **`for item in person.keys() :`**
@@ -27,6 +27,7 @@
 `print`했을 때 `dict_items([('name','Alice'), ('age', 25)])`가 나오기 때문에
 **`for key, value in person.items():`**
 해서 `print(key, value)`해줌
+
 
 ### `D.pop(k)` 또는 `D.pop(k, v)`
 키를 제거하고 값을 반환 (없으면 에러나 default 반환)
