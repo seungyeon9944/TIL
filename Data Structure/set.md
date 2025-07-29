@@ -32,11 +32,13 @@
 ---
 
 # set집합
-`set1.difference(set2)` '-'
-`set1.intersection(set2)` '&' 
-`set1.issubset(set2)` '<='
-`set1.issuperset(set2)` '>-'
-`set1.union(set2)` '|'
+|  메서드  | 연산자 |
+| -------- | ---- |
+|`set1.difference(set2)`| `set1 - set2` |
+|`set1.intersection(set2)`| `set1 & set2` | 
+|`set1.issubset(set2)`| `set1 <= set2` |
+|`set1.issuperset(set2)`| `set1 >= set2` |
+|`set1.union(set2)`| `set1 | set2` |
 
 ---
 
