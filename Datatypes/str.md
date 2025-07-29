@@ -9,7 +9,7 @@ ex. `greeting = **f**’안녕하세요, 제 이름은 **{name}**이고 나이�
 
 2)	슬라이싱 (시퀀스의 일부분을 잘라내어 새로운 시퀀스 생성)
 `my_sequence[start:stop:step], my_sequence[start:stop], my_sequence[::stop]`
-음수 인덱스의 경우 방향 바꿀 수 있음. my_str[::-1] 하면 olleh
+음수 인덱스의 경우 방향 바꿀 수 있음. `my_str[::-1]` 하면 olleh
 
 3)	문자열의 불변성 
 
