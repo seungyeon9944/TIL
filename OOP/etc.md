@@ -26,6 +26,7 @@ ex.
 `except ZeroDivisionError:`
     `print('0으로 나눌 수 없습니다.')`
 
+
 ### else & finally 코드
 - else는 예외가 없을 때
 - finally는 예외 발생 여부와 관계없이 항상 실행됨
@@ -33,9 +34,11 @@ ex.
 
 + `except Exception:` 하면 Exception이 내장 예외의 모든 상속이기 때문에 그 하위에 있는 코드에 도달 X
 
+
 ### as 키워드
 `except IndexError as error:`
 `print(f'{error}가 발생했습니다.')`
+
 
 ### EAFP 
 예외처리를 중심으로 코드 작성 (try - except)

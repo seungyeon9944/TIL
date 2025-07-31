@@ -37,3 +37,41 @@ ex. `class MyClass:`
 속성 접근 시 인스턴스 -> 클래스 순서로 탐색
 + 매직 메서드 ..  __str__
 + 데코레이터 ..
+
+
+---
+
+
+### 오답노트
+**인스턴스 메소드**
+
+        class Plus_minus:
+                def __init__(self, first, second):
+                        self.first = first
+                        self.second = second
+
+                def plus(self):
+                result = self.first + self.second
+                return result
+
+                def minus(self):
+                result self.first - self.second
+                return result
+
+        a = Plus_minus(3,4)
+        print(a.plus())
+        print(a.minus())
+
+
+**클래스 메소드**는 정적 메소드처럼 인스턴스 없이 호출할 수 있다는 점은 같습니다. 하지만 생성자 함수를 대체하여 인스턴스를 생성할 때 사용도 함. 
+
+        class Shape :
+                def __init__(self, width, height):
+                        self.width = width
+                        self.height = height
+
+                def calculate_perimeter(self):
+                        return 2*(self.width + self.height)
+                        shape1 = Shape(5, 3)
+        perimeter1 = shape1.calculate_perimeter()
+        print(perimeter1)
