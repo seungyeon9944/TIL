@@ -42,5 +42,5 @@ ex.
 
 ### EAFP 
 예외처리를 중심으로 코드 작성 (try - except)
-### LBYL 
+### LBYL <- 알고리즘 때
 값 검사를 중심으로 코드 작성 (if - else)
