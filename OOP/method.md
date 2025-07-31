@@ -104,24 +104,46 @@ ex. `__str__(self)`
                         print(f"Area: {area1}")
                         print(f"Perimeter: {perimeter1}")
         
-
-
         shape1 = Shape(5, 3)
         area1 = shape1.calculate_area()
         perimeter1 = shape1.calculate_perimeter()
 
         shape1.print_info()
 
+---
+
+        class Myth:
+                type_of_myth = 0
+
+        def __init__(self, name):
+                self.name = name
+                Myth.type_of_myth += 1
+
+        def print_name(self):
+                print(self.name)
+
+        name1 = Myth("dangun")
+        name2 = Myth("greek & rome")
+        name1.print_name()
+        name2.print_name()
+
+---
 
 **클래스 메소드**는 정적 메소드처럼 인스턴스 없이 호출할 수 있다는 점은 같습니다. 하지만 생성자 함수를 대체하여 인스턴스를 생성할 때 사용도 함. 
 
-        class Shape :
-                def __init__(self, width, height):
-                        self.width = width
-                        self.height = height
+        (생략)
+        @classmethod
+        def increase_wheels(cls):
+                cls.wheels += 1
+                print("법이 개정되어 모든 자동차의 필요 바퀴 수가 1증가하였습니다.")
+       
 
-                def calculate_perimeter(self):
-                        return 2*(self.width + self.height)
-                        shape1 = Shape(5, 3)
-        perimeter1 = shape1.calculate_perimeter()
-        print(perimeter1)
+---
+
+**스대틱 메소드**
+
+        (생략)
+        @staticmethod
+        def description(result):
+                return result
+        print(Myth.description("신화는 한 나라 혹은 한 민족으로부터 전승되어 오는 예로부터 섬기는 신을 둘러싼 이야기를 뜻한다."))
