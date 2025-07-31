@@ -59,3 +59,47 @@ len 함수를 쓰지않고 list에서 가장 문자열이 긴 단어를 추출�
 
     # 저장한 인덱스값으로 최종 문자열 반환        
     return str_list[max_index]
+
+---
+### 
+주어진 matrix에서 최대값을 가지는 인덱스를 출력하라. 단 최대값이 중복일 경우 인덱스가 더 작은 것으로 출력하라.
+
+    def find_max(matrix):
+
+        max_number = matrix[1][2]
+        max_number_list = []
+        row_max = 0
+        column_max = 0
+
+        for each_list in matrix:
+            length = len(each_list)
+            for i in range(length):
+                for j in range(length):
+                    if matrix[i][j] > max_number :
+                        max_number = matrix[i][j]
+                        max_number_list.append(max_number)
+                        if max_number_list.count(max_number) == 1:
+                            row_max = i
+                            column_max = j
+
+        return (row_max, column_max)
+
+
+    matrix1 = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ]
+
+    matrix2 = [
+        [4, 2, 3],
+        [9, 6, 5],
+        [7, 8, 1]
+    ]
+
+    print(find_max(matrix1)) 
+    print(find_max(matrix2))  
+
+
+각각 [2,2]와 [1,0]이 금방 잘 나온다 ..
+왜 막상 시험볼때는 못풀었는지 ㅜ.ㅜ
