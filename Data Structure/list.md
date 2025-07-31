@@ -66,18 +66,26 @@ len 함수를 쓰지않고 list에서 가장 문자열이 긴 단어를 추출�
 
     def find_max(matrix):
 
+        # 네 개의 변수들은 다 임의의 값으로 할당한다. 다른값으로 바꾸어도 같은결과가 나옴 !
         max_number = matrix[1][2]
         max_number_list = []
         row_max = 0
         column_max = 0
 
+        # 행렬의 각 리스트에 대해 순회
         for each_list in matrix:
             length = len(each_list)
+
+            # 리스트의 길이의 range만큼 (0, 1, 2) 행과 열 모두 순회
             for i in range(length):
                 for j in range(length):
+
+                    # i번째 행, j번째 열이 최대숫자보다 클 경우 최대숫자에 특정 행과 열의 숫자 할당
                     if matrix[i][j] > max_number :
                         max_number = matrix[i][j]
                         max_number_list.append(max_number)
+
+                        # 최대숫자를 리스트에 넣는데, 중복이 아닌경우 (리스트에 해당 숫자가 한개일 경우)에만 행의 최대값과 열의 최대값을 새로 할당
                         if max_number_list.count(max_number) == 1:
                             row_max = i
                             column_max = j
