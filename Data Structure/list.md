@@ -37,3 +37,18 @@ ex. `my_list = [1, 2, 3]`
 
     def longest_string(str_list):
         num_list = []
+        for str in str_list:
+            alphabet = 0
+            for alphabet in str:
+                alphabet += 1
+            num_list.append(alphabet)
+        max_num = num_list[0]
+        max_index = 0
+        index = 0
+        for number in num_list:
+            if number > max_num:
+                max_num = number
+                max_index = index
+            index += 1
+
+        return str_list[max_index]
