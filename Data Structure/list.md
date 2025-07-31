@@ -33,15 +33,21 @@ ex. `my_list = [1, 2, 3]`
 ---
 
 ### 오답노트
-- len 함수를 쓰지않고 string에서 가장 문자열이 긴 단어를 추출하라.
+len 함수를 쓰지않고 list에서 가장 문자열이 긴 단어를 추출하라.
 
     def longest_string(str_list):
         num_list = []
+
+        # 주어진 리스트의 문자열 순회
         for str in str_list:
-            alphabet = 0
+            alpha_num = 0
+            # 각 문자열의 알파벳 하나하나 순회해서 길이값을 저장
             for alphabet in str:
-                alphabet += 1
-            num_list.append(alphabet)
+                alphabet_num += 1
+            num_list.append(alphabet_num)
+
+        # 길이값 저장 리스트 중 더 큰값이 있으면 max_num으로 대체하고 max_index도 해당 인덱스로 할당
+
         max_num = num_list[0]
         max_index = 0
         index = 0
@@ -51,4 +57,5 @@ ex. `my_list = [1, 2, 3]`
                 max_index = index
             index += 1
 
-        return str_list[max_index]
+    # 저장한 인덱스값으로 최종 문자열 반환        
+    return str_list[max_index]
