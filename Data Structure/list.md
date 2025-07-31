@@ -29,3 +29,11 @@ ex. `my_list = [1, 2, 3]`
 
 ### L.sort( )
 원본 리스트를 오름차순으로 정렬, **none을 반환하기 때문에 print**를 해줘야 함
+
+---
+
+### 오답노트
+- len 함수를 쓰지않고 string에서 가장 문자열이 긴 단어를 추출하라.
+
+    def longest_string(str_list):
+        num_list = []

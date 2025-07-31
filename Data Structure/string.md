@@ -40,3 +40,4 @@ ex. `words = [‘Hello’, ‘world!’]`일 때 `text = ‘-‘.join(words)`면
 모두 소문자로
 ### s.swapcase( ) 
 대문자는 소문자로, 소문자는 대문자로
+
