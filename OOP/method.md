@@ -99,7 +99,7 @@ ex. `__str__(self)`
 ---
 
 
-### 오답노트
+### 오답노트 📝💯
 
         class Myth:
                 type_of_myth = 0
