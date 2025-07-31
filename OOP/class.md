@@ -38,7 +38,7 @@ ex.
 
 # 다중 상속
 둘 이상의 상위 클래스로부터 상속, 중복된 속성이나 메서드가 있는 경우 **상속 순서에 의해 결정됨**
-**MRO**(Method Resolution Order) 알고리즘 사용
+**MRO**(Method Resolution Order) 알고리즘 사용 - 각 부모를 오직 한버만 호출, 단조적 구조 형성
 기본적으로 **왼쪽에서 오른쪽**, 계층 구조에서 중복되는 클래스는 한번만 확인
 ex. 
 `class Firstchild(Dad, Mom):` 의 작성 순서이고
@@ -55,3 +55,4 @@ MRO에 따라서 현재 클래스에 부모(상위) 클래스의 메서드나 �
 중복된 부분을 `super().init (name, age, number, email)`로 대체가능
 
 2) 다중 상속 구조
+(코드 추가 예정)
