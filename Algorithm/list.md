@@ -167,3 +167,57 @@ ex. Baby-gin 접근, 순열 nPr
 ## 탐욕 알고리즘
 여러 경우 중 하나를 선택할 때 최적이라고 생각하는 것을 선택해 최적화.
 1. 해 선택 2. 실행 가능성 검사 3. 해 검사
+
+
+---
+
+## 2차원 배열
+        
+        N = int(input)
+        arr = [list(map(int, input().split())) for _ in range(N)]
+
+
+### 배열 순회
+i행의 좌표, j열의 좌표일 때
+
+        for i in range(n):
+            for j in range(m):
+                f(array[i][j])
+
+### 지그재그 순회
+i행의 좌표, j열의 좌표일 때
+
+        for i in range(n):
+            for j in range(m):
+                f(array[i][j + (m-1-2*j) * (i%2)])
+
+### 델타를 활용한 2차원 배열 탐색
+인덱스 (i,j) 일 때
+방향별로 행 di[] <- [0,1,0,-1]
+        열 dj[] <- [1,0,-1,0]
+
+    for k : 0 -> 3
+        nj <- j + dj[k]
+        nj <- j + dj[k]
+
+---
+
+    arr[0,,,N-1][0,,,N-1]
+    di[] <- [0,1,0,-1]
+    dj[] <- [1,0,-1,0]
+    for i : 0 -> N-1:
+        for j : 0 -> N-1:
+            for d in range(4):
+                ni <- i + di[d]
+                nj <- j + dj[d]
+                if 0<=ni<N and 0<=nj<N # 유효한 인덱스면
+                    f(arr[ni][nj])
+
+---
+    for i in range(N):
+        for j in range(N):
+            for di, dj in [[0,1],[1,0],[0,-1],[-1,0]]:
+                ni, nj = i+di, j+dj
+            ...
+
+            
