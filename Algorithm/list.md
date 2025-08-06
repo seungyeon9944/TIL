@@ -191,33 +191,31 @@ i행의 좌표, j열의 좌표일 때
             for j in range(m):
                 f(array[i][j + (m-1-2*j) * (i%2)])
 
-### 델타를 활용한 2차원 배열 탐색
-인덱스 (i,j) 일 때
-방향별로 행 di[] <- [0,1,0,-1]
-        열 dj[] <- [1,0,-1,0]
+## 델타를 활용한 2차원 배열 탐색 ⭐️
+기준좌표의 인덱스가 `(i,j)` 일 때
 
-    for k : 0 -> 3
-        nj <- j + dj[k]
-        nj <- j + dj[k]
+|  | 좌 | 우 | 위 | 아래 |
+|----|----|----|----|----|
+| di | 0 | 0 | -1 | 1 |
+| dj | -1 | 1 | 0 | 0 |
 
----
+리스트 형태로 정리하면
 
-    arr[0,,,N-1][0,,,N-1]
-    di[] <- [0,1,0,-1]
-    dj[] <- [1,0,-1,0]
-    for i : 0 -> N-1:
-        for j : 0 -> N-1:
-            for d in range(4):
-                ni <- i + di[d]
-                nj <- j + dj[d]
-                if 0<=ni<N and 0<=nj<N # 유효한 인덱스면
-                    f(arr[ni][nj])
+    행 di[] <- [0,1,0,-1]
+    열 dj[] <- [1,0,-1,0]
 
----
-    for i in range(N):
+    for i in range(N): 
         for j in range(N):
-            for di, dj in [[0,1],[1,0],[0,-1],[-1,0]]:
-                ni, nj = i+di, j+dj
-            ...
+            for d in range(4):
+            
+                # ni <- i + di[d]이고 nj <- j + dj[d]이기 때문에
+                for di, dj in [[0,1],[1,0],[0,-1],[-1,0]]:
+                    ni, nj = i+di, j+dj
+
+                    # 유효한 인덱스인지 확인
+                    if 0<= ni <N and 0<= nj <N :
+                        f(arr[ni][nj])
+
+
 
             
