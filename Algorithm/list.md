@@ -171,8 +171,19 @@ ex. `DATA = [4, 7, 9, 3, 5, 2, 3, 4]`일 때
 
 ---
 
+## **선택 정렬**
+리스트의 최솟값을 찾아 리스트의 맨 앞에 위치한 값과 교환
+
+    def selection_sort(a,N):
+        for i in range(N-1):
+            min_idx = i
+            for j in range(i+1, N):
+                if a[min_idx] > a[j]:
+                    min_idx = j
+            a[i], a[min_idx] = a[min_idx], a[i]
+---
+
 그밖에도 ..
-- **선택 정렬**
 - 퀵 정렬 (O(nlogn)으로 빠름)
 - 삽입 정렬
 - 병합 정렬 (O(nlogn)으로 빠름)
@@ -240,5 +251,58 @@ i행의 좌표, j열의 좌표일 때
                         f(arr[ni][nj])
 
 
+---
 
-            
+## 부분집합
+
+    bit = [0,0,0]
+    for i in range(2):
+        bit[0] = i
+        for j in range(2):
+            bit[1] = j
+            for k in range(2):
+                bit[2] = k
+                print_subset(bit)
+
+- **비트연산자** 
+    - `&` : 비트 단위로 AND
+    - `|` : 비트 단위로 OR
+    - `>>` : 피연산자의 비트 열을 오른쪽으로.
+    - `<<` : 피연산자의 비트 열을 왼쪽으로 이동
+    `1 << n : 2^n`는 원소가 n개인 경우 모든 부분집합의 수,
+    `i & (1<<j)`하면 i의 j번째 비트가 1인지 아닌지 검사
+
+비트연산자를 이용한 부분집합
+
+    arr= [1,2,3]
+    n = len(arr)
+    for i in range(1<<n):
+        for j in range(n):
+            if i & (1<<j):
+                print(arr[j], end =", ")
+        print()
+    print()
+
+---
+
+## 순차검색
+- 정렬되어있지않은 경우
+
+        for i in range(n):
+            if key == arr[i]:
+                return i
+            else:
+                return -1
+
+- 정렬되어있는 경우
+검색 실패를 반환하는 경우에도 평균 비교 회수가 반으로 줄어듬. (n+1)/2
+
+---
+
+## 이진검색
+자료가 **정렬된 상태**에서 사용
+ex. 9을 찾는다고할 때, 1 3 5 7 9 11 13 -> 9 11 13 -> 9 
+
+---
+
++) 셀렉션 알고리즘 ..           
