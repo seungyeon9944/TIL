@@ -303,6 +303,18 @@ i행의 좌표, j열의 좌표일 때
 자료가 **정렬된 상태**에서 사용
 ex. 9을 찾는다고할 때, 1 3 5 7 9 11 13 -> 9 11 13 -> 9 
 
+    def binarySearch(a, N, key):
+        start = 0
+        end = N -1
+        while start <= end :
+            middle = (start + end)//2
+            if a[middle] == key:
+                return middle
+            elif a[middle] > key:
+                end = middle - 1
+            else:
+                start = middle + 1
+        return -1
 ---
 
 +) 셀렉션 알고리즘 ..           
