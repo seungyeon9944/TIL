@@ -62,3 +62,7 @@ Last-In-First-Out 가장 마지막에 넣은 자료가 가장 먼저 나오는 �
             ans = 0
 
         print(ans)
+
+---
+### 재귀호출
+ex. 팩토리얼
