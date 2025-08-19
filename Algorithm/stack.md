@@ -76,7 +76,7 @@ sol)
 1) 스택을 이용해서 중위 표기법을 후위 표기법으로 변경 
 
     - 연산자의 경우, 스택이 비어 있거나 토큰 우선순위(icp와 isp ..)가 top보다 높으면 push
-    - `icp = {'(': 3, '*': 2, '/': 2, '+': 1, '-' : 1}`
+    - `icp = {'(': 3, '*': 2, '/': 2, '+': 1, '-' : 1}`이고
        `isp = {'(': 0, '*': 2, '/': 2, '+': 1, '-' : 1}`
     - 닫는 괄호 차례면 **여는 괄호를 만날 때까지 모두 pop해서 후위식에 추가**. 닫는 괄호와 해당 여는 괄호는 모두 버림
     - / 차례면 /보다 낮은 연산자를 만날때까지 pop(), 낮은 연산자일 경우 push()
@@ -87,3 +87,42 @@ sol)
 2) 후위 표기법의 수식을 스택으로 계산.
     - 연산자의 경우 스택에서 피연산자를 두번 pop()해서 꺼내고 계산결과 스택에 push
     - 피연산자의 경우 스택에 push()
+
+---
+
+## 부분집합
+부분집합 구하는 Backtracking 알고리즘1
+
+    def backtrack(a, k, n):
+        c = [0] * MAXCANDIDATES
+
+        if k == n:
+            process_solution(a, k)
+        else:
+            ncandidates = construct_candidates(a, k, n, c)
+            for i in range(ncandidates):
+                a[k] = c[i]
+                backtrack(a, k+1, n)
+
+부분집합 구하는 Backtracking 알고리즘2
+
+    def construct_candidates(a, k, n, c):
+        c[0] = True
+        c[1] = False
+        return 2
+
+    def process_solution(a, k):
+        for i in range(k):
+            if a[i]:
+                print(num[i], end = ' ')
+        print()
+
+부분집합 구하는 Backtracking 알고리즘3
+
+    MAXCANDIDATES = 3
+    NMAX = 4
+    a = [0] * NMAX
+    num = [1,2,3,4]
+    backtrack(a,0,3)
+
++ Backtracking을 이용하여 순열 구하기
