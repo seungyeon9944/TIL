@@ -125,4 +125,26 @@ sol)
     num = [1,2,3,4]
     backtrack(a,0,3)
 
-+ Backtracking을 이용하여 순열 구하기
+---
+### 순열
+Backtracking을 이용하여 순열 구하기2
+(순열구하기1은 부분집합 구하는1과 유사함)
+
+    def construct_candidates(a, k, n, c):
+        in_perm = [False]*(NMAX+1)
+
+        for i in range(k):
+            in_perm[a[i]] = True
+
+        ncandidates = 0
+        for i in range(1, NMAX+1):
+            if in_perm[i] == False:
+                c[ncandidates] = i
+                ncandidates += 1
+
+        return ncandidates
+
+---
+
+### 가지치기
+**부분집합의 합** : I원소의 포함 여부를 결정하면 i까지의 부분집합의 합 Si를 결정가능. Si-1이 찾고자하는 부분집합이 합보다 크면 남은원소 고려할필요가 x
