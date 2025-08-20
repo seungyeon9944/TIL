@@ -21,9 +21,9 @@
 1. 공백 큐 생성
 front = rear = -1
 2. 원소 A 삽입
-front (마지막으로 삭제된 위치) = -1 / rear +=1하고 그 자리에 A
+front (그대로) = -1 / rear +=1하고 그 자리에 A
 3. 원소 B 삽입
-front (마지막으로 삭제된 위치) = -1 / rear +=1하고 그 자리에 B
+front (그대로) = -1 / rear +=1하고 그 자리에 B
 4. 원소 반환/삭제
 front가 가리키는 자리는 삭제된 자리
 5. front == rear이면 큐가 빈 상태
@@ -57,12 +57,12 @@ front가 가리키는 자리는 삭제된 자리
             if is_empty() : print("Queue_Empty")
             else : return q[front+1]
 
-## 원형 큐
+## 원형 큐 ⭐
 - 초기 상태 : `front = rear = 0`
 - index의 순환
 - front가 있는 자리는 사용하지않고 항상 빈자리로
 - 삽입 위치 : `rear = (rear + 1) mod n`
-- 삭제 위치 : `front = (rear + 1) mod n`
+- 삭제 위치 : `front = (front + 1) mod n`
 
         def enqueue(item) :
             global rear
@@ -113,7 +113,33 @@ front가 가리키는 자리는 삭제된 자리
         rear 0x1010 -> C
 
 ### deque 덱
-끝에서 빠르게 추가와 삭제를 할 수 있는 리스트류 컨테이너. 연결 리스트를 직접 만들지 않아도 됨
+끝에서 빠르게 추가와 삭제를 할 수 있는 리스트류 컨테이너. 연결 리스트를 직접 만들지 않아도 됨. 빨라서 자주 사용함 !!
+
+        from collections import deque
+
+        # 덱을 만든다
+        queue = deque()
+
+        # 데이터를 넣을 때는 append
+        queue.append(1)
+
+        # 데이터를 뺄 때는 popleft
+        print(queue.popleft())
+
+        # 덱은 pop도 있음 - 거꾸로나옴(스택처럼 !)
+        print(queue.pop())
+
+        # 그냥 list.pop(0)보다 더 빠르게 큐로 활용 가능
+        import time
+
+        # 시작시간 기록
+        start_time = time.time()
+        for _ in range(10000):
+            queue.append(1)
+        for _ in range(10000):
+            queue.popleft()   
+        # 소요시간 기록
+        print(time.time()-start_time)
 
 ## 우선순위 큐 Priority Queue
 FIFO 순서가 아니라 우선순위대로 ! 가장 앞에 우선순위의 원소가 위치. 원소의 재배치가 필요 .. 메모리 낭비 큼
