@@ -57,3 +57,12 @@ DFS와 비슷하나 Prunning(가지치기)하고 조기 경로 차단. node가 �
 
     for row in adj_lst:
         print(row)
+
+---
+
+### 오답노트
+그래프 탐색할 때 방문할 수 있는 정점이 여러 개여서 정점 번호가 작은 것 ! 을 먼저 방문하려면
+- DFS는 **stack**이어서 LIFO니까 내림차순으로 정리
+`for next_node in sorted(adj_list[now], reverse=True):`
+- BFS는 **queue**여서 FIFO니까 오름차순으로 정리
+`for next_node in sorted(adj_list[now]):`
