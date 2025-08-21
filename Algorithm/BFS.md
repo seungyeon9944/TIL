@@ -26,20 +26,39 @@
                         # 큐에 넣기
                         queue.append(i)
 
-혹은 이런 경우도 있음
+---
 
-        def bfs(G, v, n):
-            visited = [0]*(n+1)
-            queue = []
-            queue.append(v)
-            # 인큐와 동시에 방문 예정
-            visited[v] = 1
+    # 0. 인접 행렬이나 인접 리스트 인접 만들기 (README 참고)
+    
+    # 1. 재방문 방지를 위한 방문 배열
+    visited = [0 for _ in range(n+1)]
 
-            while queue :
-                t = queue.pop(0)
-                visit(t)
-                for i in G[t] :
-                    if not visited[i]:
-                        queue.append(i)
-                        # 거리 정보 (간선 수 확인을 위한)
-                        visited[i] = visited[t] + 1
+    # 2. 출발 지점과 끝 지점 기록
+    start, goal = map(int, input().split())
+    visited[start] = 1
+
+    # 3. (덤) 진행 경로를 저장할 리스트
+    route = []
+
+    # 4. 큐 만들기
+    queue = [start]
+
+    # queue가 비어있지않은 동안 반복
+    while queue:
+        # 1) 이번 방문 지점을 가져옴
+        now = queue.pop(0)
+
+        # 2) (덤) 방문 순서를 기록 (문제마다 달라지는 부분)
+        route.append(now)
+
+        # 3) 다음 방문 가능 점들을 넣어줌
+        for next_node in adj_lst[now]:
+            # 연결되어있고 방문한 적 없으면 stack에 넣어주고 방문표시
+            if visited[next_node] == 0:
+                queue.append(next_node)
+                visited[next_node] = 1
+
+    print(route)
+    print(visited[goal])
+
+        
