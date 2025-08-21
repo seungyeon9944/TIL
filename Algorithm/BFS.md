@@ -26,7 +26,7 @@
                         # 큐에 넣기
                         queue.append(i)
 
-    ---
+혹은 이런 경우도 있음
 
         def bfs(G, v, n):
             visited = [0]*(n+1)
