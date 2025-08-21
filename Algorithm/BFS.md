@@ -25,3 +25,21 @@
                     if not visited[i]:
                         # 큐에 넣기
                         queue.append(i)
+
+    ---
+
+        def bfs(G, v, n):
+            visited = [0]*(n+1)
+            queue = []
+            queue.append(v)
+            # 인큐와 동시에 방문 예정
+            visited[v] = 1
+
+            while queue :
+                t = queue.pop(0)
+                visit(t)
+                for i in G[t] :
+                    if not visited[i]:
+                        queue.append(i)
+                        # 거리 정보 (간선 수 확인을 위한)
+                        visited[i] = visited[t] + 1
