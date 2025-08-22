@@ -61,8 +61,19 @@ DFS와 비슷하나 Prunning(가지치기)하고 조기 경로 차단. node가 �
 ---
 
 ### 오답노트
+1. 
 그래프 탐색할 때 방문할 수 있는 정점이 여러 개여서 정점 번호가 작은 것 ! 을 먼저 방문하려면
 - DFS는 **stack**이어서 LIFO니까 내림차순으로 정리
+
 `for next_node in sorted(adj_list[now], reverse=True):`
 - BFS는 **queue**여서 FIFO니까 오름차순으로 정리
+
 `for next_node in sorted(adj_list[now]):`
+
+2. 
+미로에서 경로가 여러 개일 때 그중 최단 거리 구하려면 visited 그대로 못쓴다 ! 
+visited랑 똑같은 크기의 dist 2차원 배열 만들어서 
+
+`dist[ni][nj] = dist[now_i][now_j] + 1` 
+
+이렇게 추가해서 출력때에도 `dist[goal]` 구하면 됨
