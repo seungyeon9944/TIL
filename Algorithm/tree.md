@@ -12,6 +12,8 @@
 - 자손 노드 : 서브 트리에 있는 하위 레벨의 노드들
 - 단말 노드 (리프 노드) : 차수가 0인 노드. 자식 노드가 없는 노드
 
+노드 번호가 i인 노드의 자식 노드의 번호는 2*i와 2*i+1이다.
+
 ---
 - **노드의 차수** : 노드에 연결된 자식 노드의 수
 - **트리의 차수** : 트리에 있는 노드의 차수 중에 제일 큰 값
@@ -43,4 +45,43 @@ L이 왼쪽 서브트리, V가 루트, R이 오른쪽 서브트리 일 때
 
 
 ### 2. 중위순회 (inorder traversal) : L -> V -> R
-### 3. 후위순회** (postorder traversal) : L -> R -> V
+
+    def inorder_traverse(T):
+        if T :
+            inorder_traverse(T.left)
+            visit(T)
+            inorder_traverse(T.right)
+
+### 3. 후위순회 (postorder traversal) : L -> R -> V
+
+    def postorder_traverse(T):
+        if T :
+            postorder_traverse(T.left)
+            postorder_traverse(T.right)
+            visit(T)
+
+---
+## 이진 트리 표현
+부모 번호를 인덱스로 자식 번호를 저장
+
+    for i : 1 -> N
+        read p, c
+        if c1[p] == 0:
+            c1[p] = c
+        else:
+            c2[p] = c # 왜냐면 이진트리니까
+
+자식 번호를 인덱스로 부모 번호를 저장
+
+    for i : 1-> N
+        read p,c
+        par[c] = p
+
+루트 찾기, 조상 찾기
+
+    c = 5
+    while (a[c] != 0) # 조상이 아닐 때
+        c = a[c]
+        anc.append(c)
+
+    root = c
