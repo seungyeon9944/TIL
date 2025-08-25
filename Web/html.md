@@ -38,3 +38,9 @@ ex) `<img src ="images/sample/n=pn" alt = "t샘플 이미지">`
 
 ## HTML Text Structure
 텍스트 구조와 의미를 제공하고있는것
+- Heading & Paragraphs
+`h1~6, p `
+- Lists
+`ol, ul, li`
+- Emphasis & Importance
+`em, strong`
