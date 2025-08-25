@@ -79,7 +79,7 @@ Cascade의 경우에 동일한 가중치이면 계단식이라 마지막에 나�
 **shorthand 속성** : 속성을 한번에 지정할 수 있는 속성
 4 - 상우하좌 // 3 - 상/좌우/하 // 2 - 상하/좌우 // 1 - 공통
 
-CSS는 border box가 아닌 content box의 크기를 width로 설정
+CSS는 border box가 아닌 **content box의 크기를 width로 설정**
 
 `{`
 
