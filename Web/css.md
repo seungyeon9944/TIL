@@ -3,17 +3,18 @@
 
 1. **인라인(Inline) 스타일** : HTML 요소 안에 style 속성값. 가독성과 유지보수성 때문에 거의 안씀
 
-`<body>`
+  `<body>`
 
-    `<h1 style="color: blue; background-color: yellow;"Hello World! </h1>`
+      <h1 style="color: blue; background-color: yellow;"Hello World! </h1>
+
 2. **내부(Internal) 스타일** : head 태그 안에 style 태그에 작성
 
   `<style>`
 
-    `h1 {`
-      `color : blue;`
-      `background-color: yellow;`
-    `}`
+    h1 {
+      color : blue;
+      background-color: yellow;
+    }
 `</style>`
 
 3. **외부(External) 스타일** : 별도의 CSS 파일 생성 후 HTML link 태그 사용해 불러옴
@@ -71,9 +72,17 @@ Cascade의 경우에 동일한 가중치이면 계단식이라 마지막에 나�
 ## CSS Box Model
 모든 HTML 요소를 감싸는 사각형 상자 모델
 - Margin : 외부 간격
-- Content : 실제 내용의 영역
 - Border : content와 padding 감싸는 테두리
 - Padding : content와 border 사이의 내부 여백
+- Content : 실제 내용의 영역
 
 **shorthand 속성** : 속성을 한번에 지정할 수 있는 속성
-4 - 상우하좌 3 - 상/좌우/하 2 - 상하/좌우 1 - 공통
+4 - 상우하좌 // 3 - 상/좌우/하 // 2 - 상하/좌우 // 1 - 공통
+
+CSS는 border box가 아닌 content box의 크기를 width로 설정
+
+`{`
+
+  `box-sizing: content-box;`
+
+`}`
