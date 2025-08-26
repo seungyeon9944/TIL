@@ -123,11 +123,11 @@ CSS는 border box가 아닌 **content box의 크기를 width로 설정**
 - CSS Position: Normal Flow에서 제거하여 다른 위치로 배치. `position(static, relative, absolute, fixed, sticky, ...)`
 Position 이동방향 : top, bottom, left, right, z axis (모니터로부터 수직방향)
 Position 유형
-  1. **static** : Normal Flow에 따라 배치
-  2. **relative** : 자신의 원래 기준(static)을 기준으로 이동. 이동할 때 요소가 차지하는 공간은 static때랑 같음 (빈 공간에 다른 요소가 못들어가서 다른 요소의 레이아웃에 영향 X)
-  3. **absolute** : 요소를 Normal Flow에서 제거. 가장 가까운 relative 부모 요소를 기준으로 이동. 겹치기 가능
-  4. fixed
-  5. sticky
+  1)  **static** : Normal Flow에 따라 배치
+  2)  **relative** : 자신의 원래 기준(static)을 기준으로 이동. 이동할 때 요소가 차지하는 공간은 static때랑 같음 (빈 공간에 다른 요소가 못들어가서 다른 요소의 레이아웃에 영향 X)
+  3) **absolute** : 요소를 Normal Flow에서 제거. 가장 가까운 relative 부모 요소를 기준으로 이동. 겹치기 가능
+  4) **fixed** : 요소를 Normal Flow에서 제거. 현재 화면영역(viewport) 기준으로 이동
+  5) **sticky** : 임계점에 도달하면 화면에 고정, 도달하기 전까지는 relative처럼 동작
 
 
 
