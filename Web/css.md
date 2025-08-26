@@ -86,3 +86,51 @@ CSS는 border box가 아닌 **content box의 크기를 width로 설정**
   `box-sizing: content-box;`
 
 `}`
+
+###  Block 타입
+하나의 독립된 덩어리처럼 동작. 웹 페이지의 큰 구조와 단락을 만듦. 다른 요소를 상자로부터 밀어낼 수 있음. width 속성을 지정하지 않으면 **inline 방향으로 사용가능한 공간을 모두 차지함** -> 줄바꿈이 일어남
+- `div` : 다양한 섹션을 구조화하는데 많이 쓰임
+
+그외에도 `h1~6`, `p`, `ul`, `li`
+
+### Inline 타입 
+문장 안의 단어처럼 흐름에 따라 자연스럽게 배치됨. 줄을 바꾸지않고 텍스트의 일부만 다른 스타일을 적용할 때 사용. **콘텐츠의 크기만큼만 영역을 차지, width와 height 속성을 사용 X.** padding, margin, border 적용되는데 상하 방향으로 다른 요소를 밀어내지는 못하지만 좌우로는 다른 요소를 밀어낼 수 있음
+- `span` : `<span style="color: blue;">`
+
+그외에도 `a`, `img`, `strong`
+
+---
+
+### Normal flow
+강제로 속성이나 레이아웃을 바꾸지않았을 때 웹 페이지 요소가 배치되는 방식
+가로 : Inline Direction, 세로 (엔터 눌러 문단을 나눔) : Block Direction
+
+---
+
+기타 display 속성
+### inline-block 타입 
+두 가지 특징을 모두가짐. 줄바꿈없이 크기 지정 가능. width height 속성 사용가능, 다른 요소가 상자로부터 밀려남
+`display: inline-block;`
+
+### none 타입
+요소를 화면에 표시하지않고 공간조차 없음 !
+`<div class="box none"></div>`
+
+---
+
+## CSS Position
+- CSS Layout: 요소의 위치와 크기 조정. `display(block, inline, flex, grid, ...)`
+- CSS Position: Normal Flow에서 제거하여 다른 위치로 배치. `position(static, relative, absolute, fixed, sticky, ...)`
+Position 이동방향 : top, bottom, left, right, z axis (모니터로부터 수직방향)
+Position 유형
+  1. **static** : Normal Flow에 따라 배치
+  2. **relative** : 자신의 원래 기준(static)을 기준으로 이동. 이동할 때 요소가 차지하는 공간은 static때랑 같음 (빈 공간에 다른 요소가 못들어가서 다른 요소의 레이아웃에 영향 X)
+  3. **absolute** : 요소를 Normal Flow에서 제거. 가장 가까운 relative 부모 요소를 기준으로 이동. 겹치기 가능
+  4. fixed
+  5. sticky
+
+
+
+
+---
+## CSS Flexbox
