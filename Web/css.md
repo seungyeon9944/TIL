@@ -123,14 +123,33 @@ CSS는 border box가 아닌 **content box의 크기를 width로 설정**
 - CSS Position: Normal Flow에서 제거하여 다른 위치로 배치. `position(static, relative, absolute, fixed, sticky, ...)`
 Position 이동방향 : top, bottom, left, right, z axis (모니터로부터 수직방향)
 Position 유형
-  1)  **static** : Normal Flow에 따라 배치
-  2)  **relative** : 자신의 원래 기준(static)을 기준으로 이동. 이동할 때 요소가 차지하는 공간은 static때랑 같음 (빈 공간에 다른 요소가 못들어가서 다른 요소의 레이아웃에 영향 X)
-  3) **absolute** : 요소를 Normal Flow에서 제거. 가장 가까운 relative 부모 요소를 기준으로 이동. 겹치기 가능
-  4) **fixed** : 요소를 Normal Flow에서 제거. 현재 화면영역(viewport) 기준으로 이동
-  5) **sticky** : 임계점에 도달하면 화면에 고정, 도달하기 전까지는 relative처럼 동작
+1)  **static** : Normal Flow에 따라 배치
+2)  **relative** : 자신의 원래 기준(static)을 기준으로 이동. 이동할 때 요소가 차지하는 공간은 static때랑 같음 (빈 공간에 다른 요소가 못들어가서 다른 요소의 레이아웃에 영향 X)
+3) **absolute** : 요소를 Normal Flow에서 제거. 가장 가까운 relative 부모 요소를 기준으로 이동. 겹치기 가능
+4) **fixed** : 요소를 Normal Flow에서 제거. 현재 화면영역(viewport) 기준으로 이동
+5) **sticky** : 임계점에 도달하면 화면에 고정, 도달하기 전까지는 relative처럼 동작
 
-
-
+### z-index
+요소의 쌓임 순서를 정의, 정수값으로 **값이 클수록 위에** 쌓이게됨. static이 아닌 요소에만 적용되고 기본값이 auto이고 상속됨. 같은 부모내에서 z-index가 같으면 HTML 문서 순서대로. 자식의 z-index가 부모의 z-index보다 위로 올라갈 수 X
 
 ---
+
 ## CSS Flexbox
+Inner Display 타입 -> 박스 내부의 요소들이 어떻게 배치될지
+요소를 행과 열 행태로 배치하는 1차원 레이아웃 방식
+
+- **main axis** : 기본 축, 가로
+- **cross axis** : 세로
+- **flex container** (부모 역할)
+  - `display`
+  - `flex-direction`
+  - `flex-wrap`
+  - `justify-content` : 주축 여러 줄
+  - `align-items` : 교차 축 1줄
+  - `align-content` : 교차 축 여러 줄
+
+- **flex item** (자식 요소)
+  - `align-self` : 교차 축 1줄
+  - `flex-grow`
+  - `flex-basis`
+  - `order`
