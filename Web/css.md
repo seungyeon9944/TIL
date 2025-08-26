@@ -156,6 +156,8 @@ Inner Display 타입 -> 박스 내부의 요소들이 어떻게 배치될지
   - `justify-content` : 주축 여러 줄
   - `align-items` : 교차 축 1줄
   - `align-content` : 교차 축 여러 줄
+### 오답노트
+  박스 가운데정렬하려면 `display: flex;`하고 `justify-content: center;` `align-content: center;` 하면 됨 !
 
 - **flex item** (자식 요소)
   - `align-self` : 교차 축 1줄
