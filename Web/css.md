@@ -36,7 +36,7 @@
 4. **아이디 선택자('#')** : 주어진 아이디 속성을 가진 요소 선택 .. 문서에 해당 아이디 가진 요소가 1개만 있어야함'
 5. **속성 선택자('[]')** 
 
-CSS 결합자 ⭐
+CSS 결합자 ⭐⭐⭐
 1. **자손 결합자(" ")** : **모든 자손 요소들** 선택. `p span`은 `<p>` 안에 있는 모든 `<span>`를 선택 (하위 레벨 상관 없이). 뒤쪽 선택자의 요소의 조상에 앞쪽 선택자 요소가 존재할 경우.
 
   `# blue p {`
@@ -80,21 +80,32 @@ Cascade의 경우에 동일한 가중치이면 계단식이라 마지막에 나�
 
 ## CSS Box Model
 모든 HTML 요소를 감싸는 사각형 상자 모델
-- Margin : 외부 간격
-- Border : content와 padding 감싸는 테두리
-- Padding : content와 border 사이의 내부 여백
-- Content : 실제 내용의 영역
+- **Margin** : 외부 간격
+- **Border** : content와 padding 감싸는 테두리
+- **Padding** : content와 border 사이의 내부 여백
+- **Content** : 실제 내용의 영역
 
-**shorthand 속성** : 속성을 한번에 지정할 수 있는 속성
-4 - 상우하좌 // 3 - 상/좌우/하 // 2 - 상하/좌우 // 1 - 공통
+**shorthand 속성** : 속성을 한번에 지정할 수 있는 속성 ⭐⭐
+
+4 - 상우하좌
+
+3 - 상 / 좌우 / 하
+
+2 - 상하 / 좌우
+### 오답노트
+그래서 박스 안에 content 가운데 정렬하려면 `margin: 0 auto;` 하면 됨
+
+1 - 공통
+
+---
 
 CSS는 border box가 아닌 **content box의 크기를 width로 설정**
 
-`{`
+`{box-sizing: content-box;}`
 
-  `box-sizing: content-box;`
+근데 편하게하려고 `{box-sizing: border-box}`로 변경함
 
-`}`
+---
 
 ###  Block 타입
 하나의 독립된 덩어리처럼 동작. 웹 페이지의 큰 구조와 단락을 만듦. 다른 요소를 상자로부터 밀어낼 수 있음. width 속성을 지정하지 않으면 **inline 방향으로 사용가능한 공간을 모두 차지함** -> 줄바꿈이 일어남
