@@ -34,7 +34,7 @@ ex) `<img src ="images/sample/n=pn" alt = "t샘플 이미지">`
 
 ## HTML Attributes (속성)
 요소 설정, 동작 조절 위해서
-`p class= "editor-note">My cat is very grumpy</p>`에서 `class= "editor-note"` 부분 !
+`<p class= "editor-note"> My cat is very grumpy</p>`에서 `class= "editor-note"` 부분 !
 
 ## HTML Text Structure
 텍스트 구조와 의미를 제공하고있는것
