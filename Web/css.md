@@ -3,19 +3,21 @@
 
 1. **인라인(Inline) 스타일** : HTML 요소 안에 style 속성값. 가독성과 유지보수성 때문에 거의 안씀
 
-  `<body>`
-
-      <h1 style="color: blue; background-color: yellow;"Hello World! </h1>
+```
+<body>
+  <h1 style="color: blue; background-color: yellow;" Hello  World! </h1>
+```
 
 2. **내부(Internal) 스타일** : head 태그 안에 style 태그에 작성
 
-  `<style>`
-
-    h1 {
-      color : blue;
-      background-color: yellow;
-    }
-`</style>`
+```
+<style>
+  h1 {
+    color : blue;
+    background-color: yellow;
+  }
+</style>
+```
 
 3. **외부(External) 스타일** : 별도의 CSS 파일 생성 후 HTML link 태그 사용해 불러옴
 
@@ -29,25 +31,26 @@
 - 값(Value) `red, 30px`
 
 ## CSS Selectors (CSS 선택자)
-기본 선택자
+### 기본 선택자
 1. **전체 선택자 (*)** : HTML 모든요소 선택
 2. **요소 선택자** / 태그 선택자
-3. **클래스 선택자 ('.')** : 주어진 클래스 속성을 가진 모든 요소 (재사용성 + 명시도 신경쓸필요 X)
-4. **아이디 선택자('#')** : 주어진 아이디 속성을 가진 요소 선택 .. 문서에 해당 아이디 가진 요소가 1개만 있어야함'
-5. **속성 선택자('[]')** 
+3. **클래스 선택자 ('.')** : 주어진 클래스 속성을 가진 모든 요소 (✅재사용성 + ✅명시도 신경쓸필요 X)
+4. **아이디 선택자('#')** : 주어진 아이디 속성을 가진 요소 선택 .. ✅문서에 해당 아이디 가진 요소가 1개만 있어야함'
+5. **속성 선택자('[]')** : 주어진 속성이나 속성값을 가진 모든 요소 선택. ex) `p[class^="y"]` 면 class명이 "y"로 시작하는 p요소를 뜻함
 
-CSS 결합자 ⭐⭐⭐
+### CSS 결합자 (Combinators) ⭐⭐⭐
 1. **자손 결합자(" ")** : **모든 자손 요소들** 선택. `p span`은 `<p>` 안에 있는 모든 `<span>`를 선택 (하위 레벨 상관 없이). 뒤쪽 선택자의 요소의 조상에 앞쪽 선택자 요소가 존재할 경우.
+```
+.blue p {
+}
+```
 
-  `# blue p {`
-
-  `}`
-
-2. **자식 결합자 (">")** : **직계 자식만** 선택. `ul > li`은 `<ul>` 안에 있는 모든 `<li>`를 선택 (한단계 아래 자식들만). 뒤쪽 선택자의 요소가 앞쪽 선택자의 요소의 바로 밑에 위치할 때만.
-
-  `#red > p {`
-
-  `}`
+2. **자식 결합자 (">")** : **직계 자식만** 선택. 
+`ul > li`은 `<ul>` 안에 있는 모든 `<li>`를 선택 (한단계 아래 자식들만). 뒤쪽 선택자의 요소가 앞쪽 선택자의 요소의 바로 밑에 위치할 때만.
+```
+.red > p {
+}
+```
 
 ## CSS Declaration (CSS 선언)
 선택된 요소에 적용할 스타일을 구체적으로 명시
@@ -67,14 +70,14 @@ Cascade의 경우에 동일한 가중치이면 계단식이라 마지막에 나�
 명시도가 높은 순:
 1. Importance (`!important`) -> 사용 X
 2. Inline 스타일
-3. 선택자 (id 선택자 > class 선택자 > 요소 선택자)
+3. 선택자 (✅ id 선택자 > class 선택자 > 요소 선택자)
 4. 소스 코드 선언 순서
 
 ---
 
 ## 상속
 부모 요소의 속성을 자식에게 상속
-상속되는 속성 : Text 관련 요소 (font, color, text-align), opacity, visibility 등
+✅ 상속되는 속성 : Text 관련 요소 (font, color, text-align), opacity, visibility 등
 
 ---
 
@@ -87,9 +90,11 @@ Cascade의 경우에 동일한 가중치이면 계단식이라 마지막에 나�
 
 **shorthand 속성** : 속성을 한번에 지정할 수 있는 속성 ⭐⭐
 
-4 - 상우하좌
+4 - **상우하좌** 
+`margin: 10px 20px 20px 30px;`
 
-3 - 상 / 좌우 / 하
+3 - **상 / 좌우 / 하**
+`margin: 10px 20px 30px;`
 
 2 - 상하 / 좌우
 ### 오답노트
@@ -108,13 +113,13 @@ CSS는 border box가 아닌 **content box의 크기를 width로 설정**
 ---
 
 ###  Block 타입
-하나의 독립된 덩어리처럼 동작. 웹 페이지의 큰 구조와 단락을 만듦. 다른 요소를 상자로부터 밀어낼 수 있음. width 속성을 지정하지 않으면 **inline 방향으로 사용가능한 공간을 모두 차지함** -> 줄바꿈이 일어남
+하나의 독립된 덩어리처럼 동작. 웹 페이지의 큰 구조와 단락을 만듦. 다른 요소를 상자로부터 밀어낼 수 있음. width 속성을 지정하지 않으면 ✅ **inline 방향으로 사용가능한 공간을 모두 차지함** -> 줄바꿈이 일어남
 - `div` : 다양한 섹션을 구조화하는데 많이 쓰임
 
 그외에도 `h1~6`, `p`, `ul`, `li`
 
 ### Inline 타입 
-문장 안의 단어처럼 흐름에 따라 자연스럽게 배치됨. 줄을 바꾸지않고 텍스트의 일부만 다른 스타일을 적용할 때 사용. **콘텐츠의 크기만큼만 영역을 차지, width와 height 속성을 사용 X.** padding, margin, border 적용되는데 상하 방향으로 다른 요소를 밀어내지는 못하지만 좌우로는 다른 요소를 밀어낼 수 있음
+문장 안의 단어처럼 흐름에 따라 자연스럽게 배치됨. 줄을 바꾸지않고 텍스트의 일부만 다른 스타일을 적용할 때 사용. ✅ **콘텐츠의 크기만큼만 영역을 차지, width와 height 속성을 사용 X.** padding, margin, border 적용되는데 상하 방향으로 다른 요소를 밀어내지는 못하지만 좌우로는 다른 요소를 밀어낼 수 있음
 - `span` : `<span style="color: blue;">`
 
 그외에도 `a`, `img`, `strong`
@@ -141,7 +146,11 @@ CSS는 border box가 아닌 **content box의 크기를 width로 설정**
 ## CSS Position
 - CSS Layout: 요소의 위치와 크기 조정. `display(block, inline, flex, grid, ...)`
 - CSS Position: Normal Flow에서 제거하여 다른 위치로 배치. `position(static, relative, absolute, fixed, sticky, ...)`
+
+
 Position 이동방향 : top, bottom, left, right, z axis (모니터로부터 수직방향)
+
+
 Position 유형
 1)  **static** : Normal Flow에 따라 배치
 2)  **relative** : 자신의 원래 기준(static)을 기준으로 이동. 이동할 때 요소가 차지하는 공간은 static때랑 같음 (빈 공간에 다른 요소가 못들어가서 다른 요소의 레이아웃에 영향 X)
@@ -150,28 +159,33 @@ Position 유형
 5) **sticky** : 임계점에 도달하면 화면에 고정, 도달하기 전까지는 relative처럼 동작
 
 ### z-index
-요소의 쌓임 순서를 정의, 정수값으로 **값이 클수록 위에** 쌓이게됨. static이 아닌 요소에만 적용되고 기본값이 auto이고 상속됨. 같은 부모내에서 z-index가 같으면 HTML 문서 순서대로. 자식의 z-index가 부모의 z-index보다 위로 올라갈 수 X
+요소의 쌓임 순서를 정의
+- ✅정수값으로 **값이 클수록 위에** 쌓이게됨
+- static이 아닌 요소에만 적용되고 기본값이 auto이고 상속됨
+- 같은 부모내에서 z-index가 같으면 HTML 문서 순서대로
+- ✅ 자식의 z-index가 부모의 z-index보다 위로 올라갈 수 X
 
 ---
 
 ## CSS Flexbox
-Inner Display 타입 -> 박스 내부의 요소들이 어떻게 배치될지
+Inner Display 타입 -> 박스 *내부의 요소들*이 어떻게 배치될지
 요소를 행과 열 행태로 배치하는 1차원 레이아웃 방식
 
 - **main axis** : 기본 축, 가로
 - **cross axis** : 세로
 - **flex container** (부모 역할)
-  - `display`
-  - `flex-direction`
-  - `flex-wrap`
+  - `display : flex` 하면 Flex Container로 지정 
+  - `flex-direction: column`하면 세로 방향으로 나열됨
+  - `flex-wrap: wrap`하면 한 행에 안들어갔을 때 다른 행에 배치
   - `justify-content` : 주축 여러 줄
-  - `align-items` : 교차 축 1줄
   - `align-content` : 교차 축 여러 줄
+  - `align-items` : 교차 축 1줄
+
 ### 오답노트
   박스 가운데정렬하려면 `display: flex;`하고 `justify-content: center;` `align-content: center;` 하면 됨 !
 
 - **flex item** (자식 요소)
   - `align-self` : 교차 축 1줄
-  - `flex-grow`
-  - `flex-basis`
+  - `flex-grow` : 남는 행 여백을 비율에 따라 각 flex item에 분배
+  - `flex-basis` : flex-item의 초기 크기값
   - `order`
