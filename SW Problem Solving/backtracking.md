@@ -52,3 +52,44 @@ visited = [[0] * N for _ in range(N)]
 recur(0)
 ```
 
+## 트리
+*(( 연결 리스트 코드 ))*
+
+### 이진탐색트리 삭제
+i. 자식이 하나인 경우 : 자식을 부모와 연결시켜줌
+
+ii. 자식이 둘인 경우 : 왼쪽에서 가장 큰 수를 넣거나, 오른쪽에서 가장 작은 수를 넣어줌
+
+### 이진탐색트리의 성능
+- 탐색, 삽입, 삭제 시간은 트리의 높이만큼 시간이 걸림. `O(h), h` : BST의 깊이 (height)
+- 평균의 경우 : 균형적으로 생성되어있음. `O(log n)`
+- 최악의 경우 : 한쪽으로 치우친 경사 이진트리. `O(n)`
+
+---
+
+## 힙
+**최대 힙** (부모노드의 키 값 > 자식 노드의 키 값)과 **최소 힙** 
+(부모노드의 키 값 < 자식 노드의 키 값)
+
+1) 가장 앞 데이터만 쓴다 (큐 !)
+2) max or min이면 .. 우선순위 !
+3) 우리가 찾는 건 루트 노드
+
+힙은 완전 이진 트리 형태여야함. 그리고 규칙이 있음. 시간복잡도 : `O(n log n)` 만에 삽입, 삭제 가능해서 sort 대신 사용 !
+그리고 `import heapq` 사용해서
+```
+min_heap = []
+for num in arr:
+  heapq.heappush(min_heap, num)
+print(min_heap)
+```
+
+```
+max_heap = []
+for num in arr:
+  heapq.heappush(max_heap, -min)
+
+while max_heap:
+  pop_num = heapq.heappop(max_heap)
+  print(-pop_num, end = ' ')
+```
