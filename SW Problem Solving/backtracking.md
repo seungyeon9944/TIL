@@ -35,7 +35,7 @@ def recur(now):
     return
 
   for col in range(N):
-    # 가지치기 : 같은 열ㅇ르 못 고르도록
+    # 가지치기 : 같은 열을 못 고르도록
     # --> 유망하지 않은 케이스를 모두 삭제 (세로, 대각선)
     visited[row] = col # 현재 row의 col에 놓았다 라고 가정하고
     if not check(row): # 세로와 대각선을 체크해준다
