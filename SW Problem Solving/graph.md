@@ -26,8 +26,10 @@ for _ in range(E):
 
 ----
 
-### Union-Find(Disjoint set)
-트리에서는 루트 노드가 대표자가 됨 ! 연산할 때에도 Union(d, f) 해도 각각의 대표자인 c와 e가 연산됨
+# Union-Find (Disjoint set)
+- 트리에서는 루트 노드가 대표자가 됨 ! 
+- 연산할 때에도 Union(d, f) 해도 각각의 대표자인 c와 e가 연산됨
+- 그래프의 사이클 탐지 때 사용
 
 ```
 def find_set(x):
@@ -39,7 +41,7 @@ def find_set(x):
   return find_set(parents[x])
 ```
 
-경로압축하면 한번에 대표자 찾음 !
+**경로압축**하면 한번에 대표자 찾음 !
 ```
 def find_set(x):
   # 자신 == 부모 -> 해당 집합의 대표자
