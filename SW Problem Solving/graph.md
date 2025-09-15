@@ -23,3 +23,31 @@ for _ in range(E):
 
 ## DFS (깊이 우선 탐색)
 1 ) stack 2 ) 재귀호출 방식 (코테용으로 쓸것 !)
+
+----
+
+### Union-Find(Disjoint set)
+트리에서는 루트 노드가 대표자가 됨 ! 연산할 때에도 Union(d, f) 해도 각각의 대표자인 c와 e가 연산됨
+
+```
+def find_set(x):
+  # 자신 == 부모 -> 해당 집합의 대표자
+  if x == parents[x]:
+    return x
+
+  # x의 부모노드를 기준으로 다시 부모를 검색
+  return find_set(parents[x])
+```
+
+경로압축하면 한번에 대표자 찾음 !
+```
+def find_set(x):
+  # 자신 == 부모 -> 해당 집합의 대표자
+  if x == parents[x]:
+    return x
+
+  # 경로압축 (path compression)
+  parents[x] = find_set(parents[x])
+  # x의 부모노드를 기준으로 다시 부모를 검색
+  return find_set(parents[x])
+```
