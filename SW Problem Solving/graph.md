@@ -56,11 +56,11 @@ def find_set(x):
 
 ---
 
-## 최소 신장 트리 (MST, Mininum Spanning Tree)
+# 최소 신장 트리 (MST, Mininum Spanning Tree)
 신장 트리를 구성하는 **간선들의 가중치 합이 최소**인 신장 트리
 `[(도착지점, 가중치)]` 형태로 적어줌
 
-### 1 ) Prim 알고리즘
+## 1 ) Prim 알고리즘
 BFS처럼 접근 - **인접한 정점들** 중에 최소 비용의 간선이 존재하는 정점 선택.
 가중치가 적은 노드를 먼저 꺼내니까 우선순위 .. heapq 사용
 ```
@@ -108,7 +108,7 @@ for _ in range(E):
 result = prim(0) # 출발정점과 함께 시작
 ```
 
-### 2 ) Kruskal 알고리즘
+## 2 ) Kruskal 알고리즘
 가중치 기준으로 **간선들을 정렬**하고 사이클 발생 시 선택 X <- 서로소 집합
 ```
 def find_set(x):
@@ -161,3 +161,55 @@ for u, v, w in edges:
 
     if cnt == V-1:
       break
+```
+---
+
+## 최단 경로
+간선의 가중치가 있는 그래프에서 두 정점 사이의 경로들 중에서 간선의 가중치의 합이 최소인 경로
+
+# 다익스트라 (dijkstra) 알고리즘
+시작 정점에서 **누적거리가 최소**인 정점을 선택해 나가면서 최단 경로를 구하는 방식. 큐에서 꺼내는 순간 최단거리 확정.
+```
+from heapq import heappop, heappush
+
+def dijkstra(start_node):
+  pq = [(0, start_node)] # (누적거리, 노드번호)
+  dists = [INF] * V # 각 정점까지의 최단거리를 저장할 리스트
+  dists[start_node] = 0 # 시작노드 최단거리는 0
+
+  while pq:
+    dist, node = heappop(pq)
+
+    # 이미 더 작은 값으로 온 적이 있으면 버린다
+    if dists[node] < dist:
+      continue
+
+    for next_dist, next_node in graph[node]:
+      # 다음 노드로 가기 위한 누적거리
+      # 누적 거리 = 현재까지의 거리 + 다음 거리
+      new_dist = dist + new_dist
+
+      # 이미 크거나 같은 가중치로 온 적이 있다면 continue
+      if dists[next_node] <= new_dist:
+        continue
+
+      # 누적거리, 새로운 노드를 pq에 저장 + dists에 갱신
+      dists[next_node] = new_dist
+      heappush(pq, (new_dist, next_node))
+    
+  return dists
+
+INF = int(21e8) # 무한대를 가정 (문제의 최대) 
+
+V, E = map(int, input().split())
+start_node = 0 # 시작점
+graph = [[] for _ in range(V)] # 인접 리스트로 구현
+
+for _ in range(E):
+  start, end, weight = map(int, input().split())
+  graph[start].append((weight, end)) # [주의] 단방향
+  
+# 출발지로부터 모든 최단거리
+result = dijkstra(0)
+
+```
