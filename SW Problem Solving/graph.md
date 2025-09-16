@@ -188,7 +188,7 @@ def dijkstra(start_node):
     for next_dist, next_node in graph[node]:
       # 다음 노드로 가기 위한 누적거리
       # 누적 거리 = 현재까지의 거리 + 다음 거리
-      new_dist = dist + new_dist
+      new_dist = dist + next_dist
 
       # 이미 크거나 같은 가중치로 온 적이 있다면 continue
       if dists[next_node] <= new_dist:
