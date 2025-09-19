@@ -191,4 +191,61 @@ render 함수의 세번째 함수로 **딕셔너리 타입**으로 전달, 딕�
 {% endblock content %}
 ```
 
+---
 
+# 요청과 응답
+데이터를 보내고 가져오기 .. HTML `form` element를 통해서 !
+
+## `'form'` element
+사용자로부터 할당된 데이터를 서버로 전송하는 HTML 요소
+`https://search.naver.com/search.naver?query=hello`에서
+query가 input의 name 속성, hello는 input의 데이터
+
+### action
+### method
+- 데이터를 어떠너 방식으로 보낼 것인지 정의
+- 데이터의 HTTP request method(GET, POST)를 지정
+
+#### throw 로직 - catch 로직
+#### request 객체
+
+((PPT 60페이지 그림 비슷한거 찾아보기))
+
+## `'input'` element
+type 속성 값에 따라 다양한 유형의 입력 데이터를 받음. 핵심 속성 - 'name'이자 사용자가 입력 데이터에 붙이는 이름(key)
+
+### Query String Parameters
+'&'로 연결된 key=value쌍으로 URL 주소에 파라미터를 통해 서버로 보내는 방법
+`http://host:port/path?key=value&key=value`
+
+### URL dispatcher (운항 관리자, 분배기)
+URL 패턴을 정의하고 해당 패턴이 일치하는 요청을 처리할 view 함수를 연결(매핑)
+#### Variable Routing
+
+#### APP URL
+각 앱의 urls.py에서 각자의 URL 관리
+명시적 상대 경로 `from . import views` 이렇게
+```
+from django.urls import path, include
+
+urlpatterns = [
+  path('admin/', admin.site.urls)
+  # 클라이언트 요청 추가 /articles/까지 일치하면
+  # 나머지 주소는 articles 앱의 urls.py로 넘김
+  path('articles/', include('articles.urls'))
+]
+```
+
+### `include ('app.urls')`
+프로젝트 내부 앱들의 URL을 참조할 수 있도록 매핑
+
+### `'url' tag`
+`{% url 'url_name' arg1 arg2 %}`
+주어진 URL 패턴의 이름과 일치하는 절대 경로 주소 반환
+
+### 'app_name'
+여러 개의 앱 URL 이름이 겹칠 때 성(key) 지정해주기로.
+
+`app_name = 'articles'` 먼저 써줌
+그리고 url 태그도
+`{% url 'app_name:path_name' arg1 arg2 %}`처럼 변경시켜줘야함
