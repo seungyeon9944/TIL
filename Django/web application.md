@@ -258,6 +258,12 @@ type 속성 값에 따라 다양한 유형의 입력 데이터를 받음. 핵심
 ### URL dispatcher (운항 관리자, 분배기)
 URL 패턴을 정의하고 해당 패턴이 일치하는 요청을 처리할 view 함수를 연결(매핑)
 ### Variable Routing
+`<path_converter: variable_name>`
+
+```
+path('articles/<int:num>/' , views.detail)
+path('hello/<str:name>/', views.greeting)
+```
 
 ### APP URL
 각 앱의 urls.py에서 각자의 URL 관리
