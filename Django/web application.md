@@ -115,3 +115,80 @@ def index(request):
 1) articles 앱 폴더 안에 templates 폴더 생성
 2) templates 폴더 안에 articles 폴더 생성
 3) articles 폴더 안에 템플릿 파일 생성
+
+# Django Template system
+파이썬 **데이터(context)를 HTML 문서(template)와 결합**하여, **로직과 표현을 분리**한 채 동적인 웹페이지를 생성하는 도구.
+
+'페이지 틀'에 '데이터'를 동적으로 결합하여 수많은 페이지를 효율적으로 만드는게 목적
+
+`views.py`에서
+```
+def index(request):
+  context = {
+    'name' : 'Jane',
+  }
+  return render(request, 'articles/index.html', context)
+```
+하고나서 딕셔너리의 키를 삽입
+`index.html`의 <body> 부분에 `Hello, {{ name }}` 이렇게
+
+# Django Template Language (DTL)
+Template에서 조건, 반복, 변수 등의 프로그래밍적 기능을 제공하는 시스템
+
+## 1. Variable
+render 함수의 세번째 함수로 **딕셔너리 타입**으로 전달, 딕셔너리 key에 해당하는 문자열이 template에서 사용가능한 변수명
+`{{ variable }}`
+`{{ variable.attribute }}`
+
+
+## 2. Filters
+변수를 수정할 때 사용 (변수 + '|' + 필터)
+`{{ variable|filter }}`
+`{{ name|truncatewords:30 }}`
+
+## 3. Tags
+반복 또는 논리를 수행하여 제어 흐름 만듦
+`{% tag %}`
+```
+{% if %} 
+  <h1>이거 출력해줘<h1>
+{% else %}
+  <h1>이거 출력하지마<h1>
+{% endif %}
+```
+
+## 4. Comments
+- 주석
+  - inline
+  `<h1>Hello, {# name #}</h1>`
+  - multiline
+  ```
+  {% comment %}
+  ...
+  {% endcomment %}
+  ```
+  
+---
+ 
+# 템플릿 상속 (Template inheritance)
+1. 페이지의 **공통요소**를 포함
+2. 하위 템플릿이 **재정의할 수 있는 공간**을 정의 
+
+→ 여러 템플릿이 공통요소를 공유할 수 있게 해주는 기능.
+`extends` tag와 `block` tag가 있음
+
+상위 템플릿 (base.html) 의 body 부분에
+```
+{% block content %}
+{% endblock content %}
+```
+
+하위 템플릿 (index.html) 의 반드시 **최상단**에
+```
+{% extends 'articles/base.html' %}
+{% block content %}
+...
+{% endblock content %}
+```
+
+
