@@ -209,7 +209,7 @@ query가 input의 name 속성, hello는 input의 데이터
 #### throw 로직 - catch 로직
 #### request 객체
 
-((PPT 60페이지 그림 비슷한거 찾아보기))
+![throw-catch 간 요청과 응답 정리](./throw-catch.png)
 
 ## `'input'` element
 type 속성 값에 따라 다양한 유형의 입력 데이터를 받음. 핵심 속성 - 'name'이자 사용자가 입력 데이터에 붙이는 이름(key)
