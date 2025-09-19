@@ -251,6 +251,27 @@ urls.py랑 views.py 수정해준 뒤에 `catch.html`에서
 ### `'input'` element
 type 속성 값에 따라 다양한 유형의 입력 데이터를 받음. 핵심 속성 - 'name'이자 사용자가 입력 데이터에 붙이는 이름(key)
 
+`urls.py`에서
+```
+urlpatterns = [
+  path('introduce/<str:username>/', views.introduce),
+]
+```
+그리고 `views.py`에서
+```
+from django.shortcuts import render
+
+def introduce(request, username):
+  context = {
+    'username' : username
+  }
+  return render(request, 'introduce.html', context)
+```
+그리고 `introduce.html`에서
+```
+<h3> {{ username }}님의 프로필 페이지입니다. </h3>
+```
+
 ### Query String Parameters
 '&'로 연결된 key=value쌍으로 URL 주소에 파라미터를 통해 서버로 보내는 방법
 `http://host:port/path?key=value&key=value`
