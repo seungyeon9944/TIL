@@ -132,21 +132,21 @@ def index(request):
 하고나서 딕셔너리의 키를 삽입
 `index.html`의 <body> 부분에 `Hello, {{ name }}` 이렇게
 
-# Django Template Language (DTL)
+## Django Template Language (DTL)
 Template에서 조건, 반복, 변수 등의 프로그래밍적 기능을 제공하는 시스템
 
-## 1. Variable
+### 1. Variable
 render 함수의 세번째 함수로 **딕셔너리 타입**으로 전달, 딕셔너리 key에 해당하는 문자열이 template에서 사용가능한 변수명
 `{{ variable }}`
 `{{ variable.attribute }}`
 
 
-## 2. Filters
+### 2. Filters
 변수를 수정할 때 사용 (변수 + '|' + 필터)
 `{{ variable|filter }}`
 `{{ name|truncatewords:30 }}`
 
-## 3. Tags
+### 3. Tags
 반복 또는 논리를 수행하여 제어 흐름 만듦
 `{% tag %}`
 ```
@@ -157,7 +157,7 @@ render 함수의 세번째 함수로 **딕셔너리 타입**으로 전달, 딕�
 {% endif %}
 ```
 
-## 4. Comments
+### 4. Comments
 - 주석
   - inline
   `<h1>Hello, {# name #}</h1>`
@@ -170,7 +170,7 @@ render 함수의 세번째 함수로 **딕셔너리 타입**으로 전달, 딕�
   
 ---
  
-# 템플릿 상속 (Template inheritance)
+## 템플릿 상속 (Template inheritance)
 1. 페이지의 **공통요소**를 포함
 2. 하위 템플릿이 **재정의할 수 있는 공간**을 정의 
 
@@ -193,25 +193,62 @@ render 함수의 세번째 함수로 **딕셔너리 타입**으로 전달, 딕�
 
 ---
 
-# 요청과 응답
+## 요청과 응답
 데이터를 보내고 가져오기 .. HTML `form` element를 통해서 !
 
-## `'form'` element
+### `'form'` element
 사용자로부터 할당된 데이터를 서버로 전송하는 HTML 요소
 `https://search.naver.com/search.naver?query=hello`에서
 query가 input의 name 속성, hello는 input의 데이터
 
 ### action
 ### method
-- 데이터를 어떠너 방식으로 보낼 것인지 정의
+- 데이터를 어떤 방식으로 보낼 것인지 정의
 - 데이터의 HTTP request method(GET, POST)를 지정
 
-#### throw 로직 - catch 로직
-#### request 객체
+### `throw` 로직 - `catch` 로직
 
+`urls.py`에서
+```
+path('throw/', views.throw),
+path('catch/', views.catch)
+```
+
+`views.py`에서
+```
+def throw(request):
+  return render(request, 'articles/throw.html')
+
+def catch(request):
+  context = {
+    'name' : request.GET.get('name')
+  }
+  return render(request, 'articles/catch.html', catch)
+```
+
+하고나서 `throw.html`에서
+```
+{% extends 'articles/base.html' %}
+{% block content %}
+<form action ="catch">
+  <label for="name">이름: </label>
+  # 이때 for에는 id의 값이 들어가야함
+  <input type="text" name="name" id="name">
+  <input type="submit">
+</form>
+{% endblock content %}
+```
+
+urls.py랑 views.py 수정해준 뒤에 `catch.html`에서
+```
+{% extends 'articles/base.html' %}
+{% block content %}
+<h1>Hello, {{ name }} !!!</h1>
+{% endblock content %}
+```
 ![throw-catch 간 요청과 응답 정리](./throw-catch.png)
 
-## `'input'` element
+### `'input'` element
 type 속성 값에 따라 다양한 유형의 입력 데이터를 받음. 핵심 속성 - 'name'이자 사용자가 입력 데이터에 붙이는 이름(key)
 
 ### Query String Parameters
@@ -220,9 +257,9 @@ type 속성 값에 따라 다양한 유형의 입력 데이터를 받음. 핵심
 
 ### URL dispatcher (운항 관리자, 분배기)
 URL 패턴을 정의하고 해당 패턴이 일치하는 요청을 처리할 view 함수를 연결(매핑)
-#### Variable Routing
+### Variable Routing
 
-#### APP URL
+### APP URL
 각 앱의 urls.py에서 각자의 URL 관리
 명시적 상대 경로 `from . import views` 이렇게
 ```
