@@ -48,9 +48,9 @@ form에서 빈 값을 허용할지 여부 (기본값 : `False`)
 # Migrations
 model 클래스이 변경사항 (**필드 생성, 수정 삭제** 등)을 DB에 최종 반영하는 방법.
 
-### model class (설계도 초안) 에 변경사항이 생기면 (model class 생성/수정) 반드시 새로운 설계도를 생성하고 (`makemigrations`) -> (migration 파일 .. 최종 설계도) 이를 DB에 반영해야 한다. ( `migrate` ) -> db.sqlite3 (DB)
+### model class (설계도 초안) 에 변경사항이 생기면 (model class 생성/수정) 반드시 새로운 설계도를 생성하고 (`makemigrations`) → (migration 파일, 최종 설계도) 이를 DB에 반영해야 한다. ( `migrate` ) → db.sqlite3 (DB)
 
-- `migrate` 명령어는 마이그레이션 파일의 Python 코드를 SQL 문으로 자동 변환 (파이썬 코드 -> 번역 -> SQL 쿼리문 -> 데이터베이스 실행)
+- `migrate` 명령어는 마이그레이션 파일의 Python 코드를 SQL 문으로 자동 변환 (파이썬 코드 → 번역 → SQL 쿼리문 → 데이터베이스 실행)
 - `$ python manage.py makemigrations` : model class를 기반으로 최종 설계도(migration)을 작성
 - `$ python manage.py migrate` : 최종 설계도를 DB에 전달하여 반영, 경고 메시지 뜰 때 실행
 
