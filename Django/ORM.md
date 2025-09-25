@@ -60,6 +60,7 @@ Article.objects.create(title ='third', content = 'django!')
 ```
 
 ### `Read`
+
 ### `all()`
 전체 데이터 조회
 
