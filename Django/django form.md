@@ -1,4 +1,4 @@
-a### HTML 'form'의 한계
+### HTML 'form'의 한계
 비정상적 혹은 악의적인 요청을 필터링할 수 없으므로
 
 ### Django Form의 유효성검사
