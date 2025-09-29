@@ -1,4 +1,4 @@
-### HTML 'form'의 한계
+a### HTML 'form'의 한계
 비정상적 혹은 악의적인 요청을 필터링할 수 없으므로
 
 ### Django Form의 유효성검사
@@ -79,8 +79,9 @@ def create(request):
   if form.is_valid():
 
     # 2-1. 유효성 검사 통과하면 저장
+    # save 메서드가 저장된 객체를 반환
     article = form.save()
-    return ..
+    return redirect('articles:detail', article.pk)
 
   # 2-2. 유효성 검사 통과하지못하면 해당 페이지를 다시 응답 (+ 에러메시지)
   context = {
@@ -89,3 +90,92 @@ def create(request):
   return render(request, 'articles/new.html', context)
 
 ```
+### edit
+```
+# articles/views.py
+
+def edit(request, pk):
+  article = Article.objects.get(pk=pk)
+  form = ArticleForm(instance=article)
+  context = {
+    'article' : article,
+    'form' : form,
+  }
+  return render(request, 'articles/edit.html', context)
+
+# articles/edit.html
+{{ form }}
+```
+
+### update
+```
+# articles/views.py
+def update(request, pk):
+  # 1. 수정할 게시글을 pk를 이용하여 조회
+  article = Article.objects.get(pk=pk)
+
+  # 2. 사용자가 입력한(수정한) 데이터를 통째로 받음 + 기존 데이터
+  form = ArticleForm(request.POST, instance=article)
+
+  # 3. 유효성 검사
+  if form.is_valid():
+    form.save
+    return redirect('articles:detail', article.pk)
+  context = {
+    'article' : article,
+    'form' : form,
+  }
+  return render(request, 'articles/edit.html', context)
+```
+
+### `new` + `create`
+```
+def create(request):
+  # 요청 메서드가 POST라면 (과거 create함수의 역할)
+  if request.method == 'POST':
+    form = ArticleForm(request.POST)
+    if form.is_valid():
+      article = form.save()
+      return redirect('articles:detail', article.pk)
+
+  # 요청 메서드가 POST가 아니라면 (과거 new함수의 역할)
+  else:
+    form = ArticleForm()
+  # context의 위치가 중요함 !!
+  context = {
+    'form' : form,
+  }
+  return render(request, 'articles/new.html', context)
+
+```
+
+이후에 articles/urls.py에서 `path('new/', views.new, name='new')` 제거
+
+
+articles/index.html에서 `<a href = "{% url 'articles: create' %}> CREATE</a>"` 제거
+
+
+articles/create.html에서 `<h1>CREATE</h1> <form action="{% url 'articles:create' %}" method="POST">` 제거
+
+
+articles/view.html에서 `new.html`를 `create.html`로 변경
+
+### `edit` + `update`
+```
+def update(request):
+  article = Article.objects.get(pk=pk)
+  if request.method == 'POST':
+    form = ArticleForm(request.POST, instance=article)
+    if form.is_valid():
+      form.save()
+      return redirect('articles:detail', article.pk)
+
+  else:
+    form = ArticleForm(instance=article)
+  context = {
+    'article' : article,
+    'form' : form,
+  }
+  return render(request, 'articles/edit.html', context)
+```
+그리고 new+create처럼 똑같이 주석처리 or 변경해주면 됨 !
