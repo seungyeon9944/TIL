@@ -35,3 +35,71 @@ HTML 문서와 같은 리소스들을 가져올 수 있도록 해주는 규약 (
 5) 다시 동일한 서버 접속하면 요청과 함께 쿠키 서버에 전달
 6) 서버에서 세션 아이디를 확인해 로그인되어있다는 것을 계속해서 확인
 7) 사용자의 요청을 처리하고 응답
+
+---
+
+### Django Authentication System
+- User Model 대체 -> 확장할 수 있음
+- Session 관리
+- 기본 인증 (ID/Password)
+
+### User model 대체하기
+두번째 app accounts 생성 및 등록하기
+
+```
+# accounts/models.py
+
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+  pass
+```
+
+```
+# settings.py
+# Django는 프로젝트 중간에 AUTH_USER_MODEL 바꾸는걸 싫어함 ! migrate 전에 변경해두어야함
+AUTH_USER_MODEL = 'accounts.User'
+```
+
+```
+# accounts/admin.py
+
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import User
+
+admin.site.register(User, UserAdmin)
+```
+
+## 로그인
+인증(id/password)을 완료하고, Session을 만들고 클라이언트와 연결하는 것
+```
+# accounts/urls.py
+
+app_name = 'accounts'
+urlpatterns = [
+  path('login/', views.login, name='login'),
+]
+```
+로그인 인증에 사용할 데이터를 입력받는 built-in form (**AuthenticationForm**) 사용
+```
+# accounts.views.py
+
+from django.contrib.auth.forms import AuthenticationForm
+
+def login(request):
+  if request.method == 'POST':
+    pass
+  else:
+    form = AuthenticationForm()
+  context = {
+    'form' : form,
+  }
+  return render(request, 'accounts/login.html', context)
+```
+```
+# accounts/login.html
+
+method = "POST" 이고 다음줄에 {% csrf_token %}
+```
+
