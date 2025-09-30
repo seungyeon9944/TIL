@@ -85,17 +85,17 @@ def prim(start_mode):
     if MST[node]:
       continue
 
+    MST[node] = 1 # node로 가는 최소 비용이 선택되었다
+    min_weight += weight # 누적합 추가
+
     for next_node in range(V):
-      # 갈 수 없으면 continue
+      # 간선이 없으면 continue
       if graph[node][next_node] == 0:
         continue
 
       # 이미 방문했으면 continue
       if MST[next_node]:
         continue
-
-      MST[node] = 1 # node로 가는 최소 비용이 선택되었다
-      min_weight += weight # 누적합 추가
 
       heappush(pq, (graph[node][next_node], next_node))
 
