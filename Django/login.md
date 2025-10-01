@@ -103,3 +103,37 @@ def login(request):
 method = "POST" 이고 다음줄에 {% csrf_token %}
 ```
 
+로그아웃 기능
+```
+from django.contrib.auth import logout as auth_logout
+
+def logout(request):
+  # 요청 객체(request)에 이미 유저 정보가 담겨있어서 조회할 필요 없음
+  auth_logout(request)
+  return redirect('articles:index')
+```
+
+---
+회원가입 
+```
+# accounts/urls.py
+
+app_name = 'accounts'
+urlpatterns = [
+  path('signup/', views.signup, name='signup'),
+]
+```
+
+```
+# views.py
+def signup(request):
+  if request.method == 'POST':
+    pass
+  else:
+    form = UserCreationForm()
+  context = {
+    'form': form,
+  }
+  return render(request, 'accounts/signup.html', context)
+```
+그리고 signup.html 수정
