@@ -105,7 +105,7 @@ new.html에서 `article = Article()`, `article.title = title`, 등등 기입
 
 
 ### Redirect
-(ppt 53쪽 도표 삽입)
+![redirect 원리](redirect.png)
 HTTP 표준 관점에서 새로고침 시 중복 게시물 작성의 위험이 있기도 하고, 사용자 경험의 관점에서도 로직 흐름이 어색함 
 
 따라서 실제로 서버가 클라이언트를 직접 다른 페이지로 보내는 것이 아닌 **클라이언트가 GET 요청을 한번 더 보내도록 응답하는 것** !!
@@ -118,3 +118,53 @@ return redirect('articles:index')
 # 혹은
 return redirect('articles:detail', article.pk)
 ```
+
+### Delete
+```
+# articles/urls.py
+urlpatterns = [
+  path('<int:pk>/delete/', views.delete, name='delete'),
+]
+```
+```
+# articles/views.py
+def delete(request, pk):
+  article = Article.objects.get(pk=pk)
+  article.delete()
+  return redirect('articles:index')
+```
+```
+# articles/detail.html
+...
+<form action = "{% url 'articles:delete' article.pk %}" method ="POST">
+{% csrf_token %}
+<input type="submit" value="DELETE">
+</form>
+<a href="{% url 'articles:index' %}">[back]</a>
+```
+
+### Update (Edit도 같이)
+```
+# articles/urls.py
+urlpatterns = [
+  path('<int:pk>/edit/', views.edit, name = 'edit'),
+  path('<int:pk>/update/', views.update, name = 'update'),
+]
+```
+```
+# articles/views.py
+def edit(request, pk):
+  article = Article.objects.get(pk=pk)
+  context = {
+    'article':article,
+  }
+  return render(request, 'articles/edit.html', context)
+
+def update(request, pk):
+  article = Article.objects.get(pk=pk)
+  article.title = request.POST.get('title')
+  article.content = request.POST.get('content')
+  article.save()
+  return redirect('articles:detail', article.pk)
+```
+articles/edit.html에도 `<form action="{% url 'articles:update' article.pk %}" method="POST">``value = {[article.title]}`, `{{article.content}}`로 수정하고 articles/detail.html에도 `a href="{% url 'articles:edit' article.pk %}">EDIT</a><br>` 하이퍼링크 작성
