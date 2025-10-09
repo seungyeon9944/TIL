@@ -103,6 +103,24 @@ def create(request):
 
 new.html에서 `article = Article()`, `article.title = title`, 등등 기입
 
+### HTTP
+네트워크 상에서 **데이터(리소스)** 주고받기 위한 약속
+
+## GET vs POST
+|비교|GET|POST|
+|----|----------|----------|
+|데이터 전송 방식|URL의 Query string parameter|HTTP body|
+|데이터 크기 제한|브라우저 제공 URL의 최대 길이|제한 X|
+|사용 목적|데이터 검색 및 조회|데이터 제출 및 변경|
+
+### HTTP response status code
+서버가 클라이언트의 요청에 대한 처리 결과를 나타내는 **3자리 숫자**
+
+ex) `403 Forbidden`: 서버에 요청이 전달되었지만, **권한** 때문에 거절되었다는 의미
+
+### CSRF (Cross-Site-Request-Forgery, 사이트 간 요청 위조)
+**사용자가 자신의 의지와는 무관하게** 공격자가 의도한 행동을 특정 웹사이트에 요청하게 만듦 -> 막기 위해 **CSRF 토큰**이라는 안전장치 사용
+
 
 ### Redirect
 ![redirect 원리](redirect.png)
