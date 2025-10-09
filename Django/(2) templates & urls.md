@@ -1,7 +1,7 @@
 # Django Template system
 파이썬 **데이터(context)를 HTML 문서(template)와 결합**하여, **로직과 표현을 분리**한 채 동적인 웹페이지를 생성하는 도구.
 
-'페이지 틀'에 '데이터'를 동적으로 결합하여 수많은 페이지를 효율적으로 만드는게 목적
+**'페이지 틀'에 '데이터'를 동적으로 결합**하여 수많은 페이지를 효율적으로 만드는게 목적
 
 `views.py`에서
 ```
@@ -21,12 +21,14 @@ Template에서 조건, 반복, 변수 등의 프로그래밍적 기능을 제공
 render 함수의 세번째 함수로 **딕셔너리 타입**으로 전달, 딕셔너리 key에 해당하는 문자열이 template에서 사용가능한 변수명
 `{{ variable }}`
 `{{ variable.attribute }}`
+`{{ variable_1 }}` (딕셔너리가 `{'variable_1': 'value_1'}`일 때)
 
 
 ### 2. Filters
 변수를 수정할 때 사용 (변수 + '|' + 필터)
 `{{ variable|filter }}`
 `{{ name|truncatewords:30 }}`
+`{{ picked }} 메뉴는 {{ picked|length }}글자입니다. `
 
 ### 3. Tags
 반복 또는 논리를 수행하여 제어 흐름 만듦
@@ -37,6 +39,14 @@ render 함수의 세번째 함수로 **딕셔너리 타입**으로 전달, 딕�
 {% else %}
   <h1>이거 출력하지마<h1>
 {% endif %}
+```
+
+```
+<ul>
+    {% for num in nums %}
+        <li>{{ num }}</li>
+    {% endfor %}
+</ul>
 ```
 
 ### 4. Comments
@@ -64,6 +74,8 @@ render 함수의 세번째 함수로 **딕셔너리 타입**으로 전달, 딕�
 {% block content %}
 {% endblock content %}
 ```
+하면 그 사이에 다른 템플릿에서 재정의할 수 있는 공간이 생김
+
 
 하위 템플릿 (index.html) 의 반드시 **최상단**에
 ```
@@ -75,19 +87,22 @@ render 함수의 세번째 함수로 **딕셔너리 타입**으로 전달, 딕�
 
 ---
 
-
 ## 요청과 응답
 데이터를 보내고 가져오기 .. HTML `form` element를 통해서 !
 
 ### `'form'` element
 사용자로부터 할당된 데이터를 서버로 전송하는 HTML 요소
 `https://search.naver.com/search.naver?query=hello`에서
-query가 input의 name 속성, hello는 input의 데이터
+query가 input의 name 속성 (`name = "query"`), hello는 input의 데이터
 
+`<form action="https://search.naver.com/search.naver" method="GET">`
 ### action
-### method
 - 데이터를 어떤 방식으로 보낼 것인지 정의
+
+### method
 - 데이터의 HTTP request method(GET, POST)를 지정
+
+---
 
 ### `throw` 로직 - `catch` 로직
 
@@ -159,6 +174,8 @@ def introduce(request, username):
 '&'로 연결된 key=value쌍으로 URL 주소에 파라미터를 통해 서버로 보내는 방법
 `http://host:port/path?key=value&key=value`
 
+---
+
 ### URL dispatcher (운항 관리자, 분배기)
 URL 패턴을 정의하고 해당 패턴이 일치하는 요청을 처리할 view 함수를 연결(매핑)
 ### Variable Routing
@@ -168,31 +185,52 @@ URL 패턴을 정의하고 해당 패턴이 일치하는 요청을 처리할 vie
 path('articles/<int:num>/' , views.detail)
 path('hello/<str:name>/', views.greeting)
 ```
+정수 num 변수가 views.detail에, 문자열 name 변수가 views.greeting에 **키워드 인자**로 전달됨. urls.py에서 `path('articles/<int:num>/' , views.detail)`라고 했으면 views.py에서 `def detail(request, num):`이라고 함수를 정의해야함
 
-### APP URL
+### App URL mapping
 각 앱의 urls.py에서 각자의 URL 관리
 명시적 상대 경로 `from . import views` 이렇게
 ```
 from django.urls import path, include
 
 urlpatterns = [
-  path('admin/', admin.site.urls)
-  # 클라이언트 요청 추가 /articles/까지 일치하면
-  # 나머지 주소는 articles 앱의 urls.py로 넘김
-  path('articles/', include('articles.urls'))
+  path('admin/', admin.site.urls),
+  path('articles/', include('articles.urls')),
+  path('pages/', include('pages.urls')),
 ]
 ```
 
 ### `include ('app.urls')`
-프로젝트 내부 앱들의 URL을 참조할 수 있도록 매핑
+프로젝트 내부 앱들의 URL을 참조할 수 있도록 매핑 (URL의 일치하는 부분까지 잘라냄)
+
+### Naming URL patterns
+```
+# articles/urls.py에서
+urlpatterns = [
+    path('search/', views.search, name='search'),
+]
+```
+```
+# articles/index.html에서
+<a href="{% url 'search' %}">search</a>
+```
+
 
 ### `'url' tag`
 `{% url 'url_name' arg1 arg2 %}`
 주어진 URL 패턴의 이름과 일치하는 절대 경로 주소 반환
+```
+<a href="{% url 'detail' 1 %}">Article 1</a>
+<a href="{% url 'detail' 2 %}">Article 2</a>
+```
 
 ### 'app_name'
 여러 개의 앱 URL 이름이 겹칠 때 성(key) 지정해주기로.
-
+articles/urls.py에
 `app_name = 'articles'` 먼저 써줌
+
+pages/urls.py에는
+`app_name = 'pages'` 씀
+
 그리고 url 태그도
 `{% url 'app_name:path_name' arg1 arg2 %}`처럼 변경시켜줘야함
