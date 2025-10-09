@@ -100,6 +100,7 @@ def create(request):
   Article.objects.create(title=title, content=content)
   return render(request, 'articles/create.html')
 ```
+✏️*Create 메서드에서 `Article.objects.create()`는 객체를 만들고 즉시 DB에 저장함*
 
 new.html에서 `article = Article()`, `article.title = title`, 등등 기입
 
@@ -112,6 +113,8 @@ new.html에서 `article = Article()`, `article.title = title`, 등등 기입
 |데이터 전송 방식|URL의 Query string parameter|HTTP body|
 |데이터 크기 제한|브라우저 제공 URL의 최대 길이|제한 X|
 |사용 목적|데이터 검색 및 조회|데이터 제출 및 변경|
+✏️*GET: 응답 결과를 브라우저가 캐싱할 수 있음*
+✏️*GET: URL에 데이터가 노출됨*
 
 ### HTTP response status code
 서버가 클라이언트의 요청에 대한 처리 결과를 나타내는 **3자리 숫자**
