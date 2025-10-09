@@ -28,13 +28,9 @@ HTML 문서와 같은 리소스들을 가져올 수 있도록 해주는 규약 (
 ## 세션
 서버 측에서 생성되어 클라이언트와 서버 간의 **상태를 유지**, 상태 정보를 **서버 쪽에 저장하고 유지하는** 데이터 저장 방식
 - 세션 작동 원리
-1) 클라이언트가 로그인 요청 후 인증 성공하면 서버가 세션 데이터를 생성 후 저장
-2) 생성된 세션 데이터에 인증할 수 있는 세션 아이디 발급
-3) 세션 아이디를 클라이언트에게 응답
-4) 클라이언트는 응답받은 세션 아이디를 쿠키에 저장
-5) 다시 동일한 서버 접속하면 요청과 함께 쿠키 서버에 전달
-6) 서버에서 세션 아이디를 확인해 로그인되어있다는 것을 계속해서 확인
-7) 사용자의 요청을 처리하고 응답
+1) **서버 측에서는 세션 데이터를 생성 후 저장**하고, 이 데이터에 접근할 수 있는 **세션 ID**를 생성
+2) 이 ID를 클라이언트 측으로 전달하고, **클라이언트는 쿠키에 이 ID를 저장**
+3) 이후 클라이언트가 같은 서버에 재요청할때마다 저장해두었던 **쿠키도 요청과 함께 전송**
 
 ---
 
@@ -54,7 +50,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
   pass
 ```
-
+## AUTH_USER_MODEL
 ```
 # settings.py
 # Django는 프로젝트 중간에 AUTH_USER_MODEL 바꾸는걸 싫어함 ! migrate 전에 변경해두어야함
@@ -103,7 +99,9 @@ def login(request):
 method = "POST" 이고 다음줄에 {% csrf_token %}
 ```
 
-로그아웃 기능
+## 로그아웃 
+1) DB에서 현재 요청에 대한 Session Data 삭제
+2) 클라이언트의 쿠키에서도 Session ID 삭제
 ```
 from django.contrib.auth import logout as auth_logout
 
@@ -114,7 +112,9 @@ def logout(request):
 ```
 
 ---
-회원가입 
+## 회원가입 
+### get_user_model()
+올바른 모델을 동적으로 가져오기 위해서 현재 프로젝트에서 활성화된 사용자 모델을 반환
 ```
 # accounts/urls.py
 
@@ -137,3 +137,32 @@ def signup(request):
   return render(request, 'accounts/signup.html', context)
 ```
 그리고 signup.html 수정
+
+## 회원 탈퇴
+`request.user.delete()` 사용
+
+---
+
+### `is_authenticated`
+### `login_required`
+
+---
+
+## 해시 (Hash)
+임의의 크기를 가진 데이터를 고정된 크기의 **고유한 값**으로 변환하는 것
+
+## 해시함수
+어떤 데이터를 다른 데이터로 변환시키는 함수
+- 입력값으로 해시값 만들수있지만, 해시값만 보고 원래 입력값 알아낼 수 없음 (단방향)
+- 입력값이 단 한글자만 달라져도 해시값은 완전히 달라짐 (눈사태 효과)
+
+## SHA-256 (Secure Hash Algorithm - 256)
+안전한 해시 알고리즘, 어떤 데이터 입력하든 256비트 길이의 결과물 만들어냄
+
+but **레인보우 테이블(Rainbow Table)** 이용해서 미리 수많은 비밀번호를 해시로 변환해둠
+
+sol) 같은 비밀번호라도 사용자마다 **솔트(Salt)**라는 임의의 문자열을 비밀번호에 덧붙여서 해시 값 생성
+
+but **무차별 대입 공격(Brute-force Attack)**으로 가능하나 모든 비밀번호 하나씩 대입해봄
+
+sol) 연산속도 늦추는 **키 스트레칭(Key Stretching)**
