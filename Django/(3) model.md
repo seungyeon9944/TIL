@@ -22,7 +22,7 @@ CharField랑 TextField는 필드 유형, max_length = 10은 필드 옵션
 제한된 길이의 문자열을 저장
 
 ### `TextField()`
-길이 제한이 없는 대용량 텍스트를 저장
+길이 제한이 없는 대용량 텍스트를 저장 (무한대는 아님)
 
 그밖에도 숫자 필드 `IntegerField`, `FloatField`/
 날짜 및 시간 필드 `DateField`, `TimeField`, `DateTimeField` / 파일 관련 필드 `FileField`, `ImageField`
@@ -46,7 +46,7 @@ form에서 빈 값을 허용할지 여부 (기본값 : `False`)
 ---
 
 # Migrations
-model 클래스이 변경사항 (**필드 생성, 수정 삭제** 등)을 DB에 최종 반영하는 방법.
+model 클래스의 변경사항 (**필드 생성, 수정 삭제** 등)을 DB에 최종 반영하는 방법.
 
 ### model class (설계도 초안) 에 변경사항이 생기면 (model class 생성/수정) 반드시 새로운 설계도를 생성하고 (`makemigrations`) → (migration 파일, 최종 설계도) 이를 DB에 반영해야 한다. ( `migrate` ) → db.sqlite3 (DB)
 
@@ -80,7 +80,7 @@ Django가 추가 설치 및 설정 없이 자동으로 제공하는 관리자 �
 - 데이터베이스 모델의 **CRUD(생성, 읽기, 업데이트, 삭제)** 작업을 간편하게 할 수 있음
 - 빠른 프로토타이핑, 비개발자 데이터 관리, 내부 시스템 구축에 이상적
 
-1) Django admin 계정 생성 - 터미널 열기, 관리자 계정 생성 명령어 입력 (`$python manage.py createsuperuser`), 정보 입력
+1) Django admin 계정 생성 - 터미널 열기, 관리자 계정 생성 명령어 입력 (`$ python manage.py createsuperuser`), 정보 입력
 2) DB에 생성된 admin 계정 확인
 3) 관리자 인터페이스 페이지 .. 웹 브라우저 열고 `http://127.0.0.1:8000/admin`로 이동
 4) 관리자 인터페이스 접속 확인 (아무것도 안 보이는게 맞음)
