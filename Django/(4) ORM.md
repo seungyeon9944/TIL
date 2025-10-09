@@ -67,7 +67,7 @@ Article.objects.create(title ='third', content = 'django!')
 ex) `Article.objects.filter(title='first')`
 
 ### `get()`
-주어진 매개변수와 일치하는 객체를 반환 (QuerySet을 반환하지않음 !, 고유성을 보장하는 조회에서만 사용).
+주어진 매개변수와 일치하는 객체를 반환 (QuerySet을 반환하지않음 !, 단일객체 반환, 고유성을 보장하는 조회에서만 사용).
 ex) `Article.objects.get(pk=100)`
 
 **primary key(pk)** : DB 테이블마다 각 행을 고유하게 식별할 수 있는 속성
@@ -75,6 +75,8 @@ ex) `Article.objects.get(pk=100)`
 
 ### `Update`
 수정 전에 조회해야 함 !
+
+✏️*게시글 제목을 일괄 변경할 때 사용가능*
 ```
 article = Article.objects.get(pk=1) # 수정할 인스턴스 조회
 article.title = 'byebye' # 인스턴스 변수를 변경
@@ -87,4 +89,8 @@ article.save() # 저장
 article = Article.objects.get(pk=1) # 수정할 인스턴스 조회
 article.delete() # delete 메서드 호출 (삭제 된 객체가 반환)
 ```
+✏️ *게시글 하나 삭제할 때는 `Post.objects.get(id=1).delete()`*
+✏️ *전체 게시글 삭제할 때는 `Post.objects.all().delete()`
+✏️ *작성자가 'anonymous'인 게시글을 모두 삭제할 때는 `Post.objects.filter(author="anonymous").delete()`*
 
+bacc
