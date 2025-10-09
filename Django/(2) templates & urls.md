@@ -1,5 +1,5 @@
 # Django Template system
-파이썬 **데이터(context)를 HTML 문서(template)와 결합**하여, **로직과 표현을 분리**한 채 동적인 웹페이지를 생성하는 도구.
+파이썬 **데이터(context)를 HTML 문서(template)와 결합**하여, **로직과 표현을 분리**한 채 동적인 웹페이지를 생성하는 도구. (✏️*HTML과 Python 코드를 분리하여 작성하기 위함*✏️)
 
 **'페이지 틀'에 '데이터'를 동적으로 결합**하여 수많은 페이지를 효율적으로 만드는게 목적
 
@@ -98,6 +98,7 @@ query가 input의 name 속성 (`name = "query"`), hello는 input의 데이터
 `<form action="https://search.naver.com/search.naver" method="GET">`
 ### action
 - 데이터를 어떤 방식으로 보낼 것인지 정의
+- ✏️ *form 태그에 action 속성이 없을 경우 기본적으로 현재 페이지로 동작*
 
 ### method
 - 데이터의 HTTP request method(GET, POST)를 지정
@@ -219,6 +220,8 @@ urlpatterns = [
 ### `'url' tag`
 `{% url 'url_name' arg1 arg2 %}`
 주어진 URL 패턴의 이름과 일치하는 절대 경로 주소 반환
+
+✏️ *변수 출력 방식은 아님 !!!!*
 ```
 <a href="{% url 'detail' 1 %}">Article 1</a>
 <a href="{% url 'detail' 2 %}">Article 2</a>
