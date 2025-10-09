@@ -44,8 +44,6 @@ article.title = 'first' # 변수 할당
 article.content = 'django!'
 
 article.save() # save를 호출해야 객체가 데이베이스에 저장됨 (인스턴스 메서드)
-
-article.created_at
 ```
 
 2) 초기 값과 함께 객체 생성 및 저장
@@ -69,7 +67,7 @@ Article.objects.create(title ='third', content = 'django!')
 ex) `Article.objects.filter(title='first')`
 
 ### `get()`
-주어진 매개변수와 일치하는 객체를 반환 (QuerySet을 반환하지않음 !).
+주어진 매개변수와 일치하는 객체를 반환 (QuerySet을 반환하지않음 !, 고유성을 보장하는 조회에서만 사용).
 ex) `Article.objects.get(pk=100)`
 
 **primary key(pk)** : DB 테이블마다 각 행을 고유하게 식별할 수 있는 속성
@@ -88,55 +86,5 @@ article.save() # 저장
 ```
 article = Article.objects.get(pk=1) # 수정할 인스턴스 조회
 article.delete() # delete 메서드 호출 (삭제 된 객체가 반환)
-```
-
----
-
-# ORM with view
-웹 페이지에 보여줄 데이터를 DB에서 가져올 때, 사용자가 입력한 새로운 데이터를 DB에 저장할 때 사용.
-
-crud/urls.py 에서
-```
-from django.urls import path, include
-
-urlpatterns = [
-  path('admin/', admin.site.urls),
-  path('articles/', include('articles.urls')),
-]
-```
-
-articles/urls.py에서
-```
-from django.urls import path
-from . import views
-
-urlpatterns = [
-  path('', views.index, name='index'),
-]
-```
-
-articles/views.py에서
-```
-from .models import Article
-
-def index(request):
-  articles = Article.objects.all()
-  context = {
-    'articles' : articles,
-  }
-
-  return render(request, 'articles/index.html', context)
-```
-
-articles/index.html에
-```
-<h1>Articles</h1>
-<hr>
-{% for article in articles %}
-  <p>글 번호 : {{ article.pk }}</p>
-  <p>글 제목 : {{ article.title }}</p>
-  <p>글 내용 : {{ article.content }}</p>
-  <hr>
-{% endfor %}
 ```
 

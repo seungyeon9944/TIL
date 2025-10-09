@@ -1,3 +1,51 @@
+# ORM with view
+웹 페이지에 보여줄 데이터를 DB에서 가져올 때, 사용자가 입력한 새로운 데이터를 DB에 저장할 때 사용.
+
+crud/urls.py 에서
+```
+from django.urls import path, include
+
+urlpatterns = [
+  path('admin/', admin.site.urls),
+  path('articles/', include('articles.urls')),
+]
+```
+
+articles/urls.py에서
+```
+from django.urls import path
+from . import views
+
+urlpatterns = [
+  path('', views.index, name='index'),
+]
+```
+
+articles/views.py에서
+```
+from .models import Article
+
+def index(request):
+  articles = Article.objects.all()
+  context = {
+    'articles' : articles,
+  }
+
+  return render(request, 'articles/index.html', context)
+```
+
+articles/index.html에
+```
+<h1>Articles</h1>
+<hr>
+{% for article in articles %}
+  <p>글 번호 : {{ article.pk }}</p>
+  <p>글 제목 : {{ article.title }}</p>
+  <p>글 내용 : {{ article.content }}</p>
+  <hr>
+{% endfor %}
+```
+
 ### `Read`
 게시글 상세 페이지를 응답하는 함수
 1. 몇번 게시글인지를 DB에 조회
