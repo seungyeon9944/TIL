@@ -48,7 +48,9 @@ class ArticleForm(forms.Form):
 ```
 
 ## Django ModelForm
-사용자 입력 데이터를 DB에 저장해야 할 때
+사용자 입력 **데이터를 DB에 저장**해야 할 때
+
+✏️ *데이터베이스와 직접 연결되어있음*
 ```
 # articles/forms.py
 
@@ -62,7 +64,17 @@ class ArticleForm(forms.ModelForm):
     fields = '__all__'
 ```
 
-`fields = ('title',)` 대신 `exclude = ('title',)` 로 모델에서 포함하지 않도록 필드를 지정할 수도있음
+### Meta class
+ModelForm의 정보를 작성하는 곳
+
+`fields = ('title',)` 대신 
+```
+class ArticleForm(forms.ModelForm):
+  class Meta:
+    model = Article
+    exclude = ('title',)
+```
+로 모델에서 포함하지 않도록 필드를 지정할 수도있음
 
 ---
 ### ModelForm 적용
@@ -128,23 +140,26 @@ def update(request, pk):
   return render(request, 'articles/edit.html', context)
 ```
 
-### `new` + `create`
+### `new` + `create` (new는 GET method 요청만을, create는 POST method 요청만을 받음)
 ```
 def create(request):
-  # 요청 메서드가 POST라면 (과거 create함수의 역할)
+  # 1-1. 요청 메서드가 POST라면 (과거 create함수의 역할)
   if request.method == 'POST':
     form = ArticleForm(request.POST)
     if form.is_valid():
       article = form.save()
       return redirect('articles:detail', article.pk)
 
-  # 요청 메서드가 POST가 아니라면 (과거 new함수의 역할)
+  # 1-2. 요청 메서드가 POST가 아니라면 (과거 new함수의 역할)
   else:
     form = ArticleForm()
-  # context의 위치가 중요함 !!
+
+  # 2. context의 위치가 중요함 !!
   context = {
     'form' : form,
   }
+
+  # 3. return render
   return render(request, 'articles/new.html', context)
 
 ```
@@ -179,3 +194,5 @@ def update(request):
   return render(request, 'articles/edit.html', context)
 ```
 그리고 new+create처럼 똑같이 주석처리 or 변경해주면 됨 !
+
+✏️ *입력값이 유효하지않으면 is_valid()는 False를 반환하고 오류 메시지가 form 객체에 저장됨*

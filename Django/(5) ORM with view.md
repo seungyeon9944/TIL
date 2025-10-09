@@ -94,7 +94,7 @@ def create(request):
 
   # 2.2
   article = Article(title=title, content=content)
-  articl.save()
+  article.save()
 
   # 2.3
   Article.objects.create(title=title, content=content)
