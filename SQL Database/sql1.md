@@ -15,7 +15,7 @@
 
 ## `ORDER BY`
 - FROM 절 뒤에 위치
-- 결과를 **오름차순 (ASC, 기본 값) 혹은 내림차순 (DESC)**으로 정렬
+- 결과를 **오름차순 (ASC, 기본 값) 혹은 내림차순 (DESC)** 으로 정렬
 - `SELECT FirstName FROM employees ORDER BY FirstName DESC;`
 
 ## `DISTINCT`
