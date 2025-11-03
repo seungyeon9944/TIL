@@ -58,5 +58,12 @@ SQL은 논리 연산에 대해 `TRUE, FALSE, UNKNOWN` 이렇게 세 가지 값�
 - `SELECT department, COUNT(*) AS num_employees FROM employees GROUP BY department HAVING num_employees > 5;`
 
 
-SELECT statement 실행 순서
+| 비교 |    `WHERE`    |    `HAVING`   |
+| --- | ----------- | ----------- |
+| 목적 | 개별 행 조건 지정 | `GROUP BY`에 의해 그룹화 조건 지정 |
+| 적용시점 | `GROUP BY` 이전에 | 그룹핑/집계 함수 적용 후에 |
+| 예시 | 특정조건 만족하는 행 집계, 정렬 | 그룹별 집계 결과 조건걸어 특정그룹 선택 |
+
+
+결론 ! SELECT statement 실행 순서
 # `FROM` -> `WHERE` -> `GROUP BY` -> `HAVING` -> `SELECT` -> `ORDER BY` -> `LIMIT`
