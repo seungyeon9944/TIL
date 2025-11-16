@@ -2,7 +2,7 @@
 ### 1. Generative AI
 생성형 AI (새로운 콘텐츠 생성하는 인공지능 모델) 
 
-ChatGPT는 GPT(**G**enerative **P**re-trained **T**ransformer) 모델을 기반으로 한 대화형 AI .. 앵무새
+ChatGPT는 GPT(**G**enerative **P**re-trained **T**ransformer) 모델을 기반으로 한 대화형 AI
 
 ### 2. Pre-trained
 **LLM**, Large Language Model : pre-trained되고 fine-tuning된 모델
