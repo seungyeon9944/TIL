@@ -74,4 +74,73 @@ console.log(x) // 1
 - HTML script 태그, js 확장자 파일, 브라우저 Console
   
 ### DOM
-Document Object Model, 웹 페이지를 구조화된 객체로 제공하여 프로그래밍 언어가 페이지 구조에 접근할 수 있는 방법 제공
+- Document Object Model, 웹 페이지를 구조화된 객체로 제공하여 프로그래밍 언어가 페이지 구조에 접근할 수 있는 방법 제공
+- **DOM tree** : HTML 태그를 나타내는 elements의 node는 문서의 구조를 결정
+- 즉 문서의 요소들을 객체로 제공하여 다른 프로그래밍 언어에서 접근하고 조작할 수 있는 방법을 제공하는 API 
+- **웹 페이지를 동적으로 만들기 == 웹 페이지를 조작하기** by 조작하고자 하는 요소 **선택** → 속성 **조작** 
+
+---
+
+### 선택 메서드
+### `document.querySelector(selector)`
+제공된 선택자(selector)와 일치하는 첫번째 요소 한 개 선택하여 반환 (없으면 null 반환)
+
+### `document.querySelectorAll(selector)`
+제공된 선택자(selector)와 일치하는 여러 element 선택하여 NodeList 반환
+
+---
+
+### DOM 조작
+1. 속성 (attribute) 조작 
+  - 1.1 클래스 속성 조작 ⭐
+  
+    `'classList' property` : 요소의 클래스 목록을 유사 배열 형태로 변환
+    ### `element.classList.add()`
+    지정한 클래스 값 추가
+    ### `element.classList.remove()`
+    지정한 클래스 값 제거
+    ### `element.classList.toggle()`
+    클래스가 존재한다면 제거 + false 반환 
+  - 1.2 일반 속성 조작
+    ### `Element.getAttribute()`
+    해당 요소에 지정된 값 반환 (조회)
+    ### `Element.setAttribute(name, value)`
+    지정된 요소의 속성 값 설정, 속성 이미 있으면 기존 값 갱신
+    ### `Element.removeAttribute()`
+    요소에서 지정된 이름 가진 속성 제거
+
+2. HTML 콘텐츠 조작 ⭐
+   
+   `'textContent' property` : 요소의 텍스트 컨텐츠를 표현. ex) `<p> lorem <p>`
+
+3. DOM 요소 조작
+   ### `document.createElement(tagName)`
+   작성한 tagName의 HTML 요소를 생성하여 반환
+   ### `Node.appendChild()`
+   한 Node를 특정 부모 Node의 자식 NodeList 중 마지막 자식으로 삽입, 추가된 Node 객체 반환
+   ### `Node.removeChild()`
+   DOM에서 자식 Node를 제거, 제거된 Node 반환
+
+4. 스타일 조작
+   ### `'style' property`
+
+---
+
+### Node
+DOM의 기본 구성 단위
+
+### NodeList
+DOM 메서드를 사용해 선택한 Node의 목록
+
+### Element
+DOM 트리에서 HTML 요소를 나타내는 특별한 유형의 Node
+
+### Parsing
+브라우저가 문자열을 해석하여 DOM Tree로 만드는 과정 (구문 분석, 해석)
+
+### 호이스팅 (hoisting)
+변수 **선언문이 코드의 최상단으로 끌어올려지는 듯한** 현상
+```
+console.log(name) // undefined
+var name = '홍길동' // 선언 및 할당
+```
