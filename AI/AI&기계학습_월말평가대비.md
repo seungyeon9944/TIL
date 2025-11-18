@@ -1,12 +1,9 @@
-- 이론: MLP, 데이터 생성 방법, 토큰화와 임베딩
-- 이론 + 코드: EDA, 선형회귀, Linear Probing
-
 ### **MLP**
 **MLP (Multi-Layer Perceptron)**, 즉 **다층 퍼셉트론**은 가장 기본적인 형태의 심층 신경망(Deep Neural Network)입니다. 이는 인공 신경망(Artificial Neural Network, ANN)의 한 종류로, **입력층(Input Layer)** 과 **출력층(Output Layer)** 사이에 **하나 이상의 은닉층(Hidden Layer)**을 가진 구조를 의미합니다.
 
 - 추세선 y = ax + b에서 a, b를 어떻게 설정하는지 설명하시오.
   
-**MSE가 최소**가 되도록 하는 a, b를 찾는다. 최소제곱법 사용
+  **MSE가 최소**가 되도록 하는 a, b를 찾는다. 최소제곱법 사용
 
 - 경사하강법을 설명하시오.
   
