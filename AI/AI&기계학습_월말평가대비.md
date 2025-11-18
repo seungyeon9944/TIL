@@ -24,6 +24,21 @@ y = ax + b 꼴의 **선형 함수의 중첩과 ReLU라는 활성화 함수**를 
 - MLP의 은닉층에서는 활성화 함수가 중요한 이유는 무엇인가? 
   
 은닉층에서 활성화 함수는 **비선형성**을 추가하여, 신경망이 복잡한 함수(비선형적 관계, 고차원 분포)를 학습할 수 있게 한다.
+
+*✏️ 오답노트 : MLP의 학습 루프 순서*
+```
+# 학습 루프
+for epoch in range(2000): 
+    y_hat = model(X) # 모델 예측
+    loss = criterion(y_hat, y) # 로스 계산
+
+    optimizer.zero_grad() # 미분 계산 초기화 (미분 Ready)
+    loss.backward() # 미분 계산 수행
+    optimizer.step() # GD 점프 1회 (w, b 값이 업데이트 됩니다.)
+
+    if epoch % 400 == 0:
+        print(f"Epoch {epoch:4d} | Loss: {loss.item():.4f}")
+```
     
 ---
 

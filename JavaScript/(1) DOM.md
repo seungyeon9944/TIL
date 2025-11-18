@@ -26,7 +26,7 @@ World Wide Web, 전 세계적인 정보 공유 시스템
 ### 식별자(변수명) Naming Convention
 - 카멜 케이스 (camelCase) : 변수, 객체, 함수에 사용
 - 파스칼 케이스 (PascalCase) : 클래스, 생성자에 사용
-- 대문자 스네이크 케이스 (SNAKE_CASE) : **상수(constants)**에 사용
+- 대문자 스네이크 케이스 (SNAKE_CASE) : **상수**에 사용
 
 ### 변수 선언 키워드 3가지
 ### `let`
