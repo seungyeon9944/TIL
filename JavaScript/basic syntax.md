@@ -91,14 +91,105 @@ console.log(obj2.age) // 40
     4 || 7 // 4
     ```
 
-  ### 조건문
-  - if 
-    조건 표현식의 결과값을 boolean 타입으로 변환 후 참/거짓을 반환
+### 조건문
+  - ### if 
+  조건 표현식의 결과값을 boolean 타입으로 변환 후 참/거짓을 반환
 
-  - 삼항 연산자
-    ```
-    const age = 20
-    const message = (age >= 18) ? '성인' : '미성년자'
-    console.log(message) // '성인'
-    ```
+  - ### 삼항 연산자
+  ```
+  const age = 20
+  const message = (age >= 18) ? '성인' : '미성년자'
+  console.log(message) // '성인'
+  ```
 
+### 반복문
+  - ### while
+  조건문이 참이면 문장을 계속해서 수행
+
+  - ### for
+  특정한 조건이 거짓으로 판별될 때까지 반복
+  ```
+  for ([초기문]; [조건문]; [증감문]) {
+    // do something
+  }
+
+  <!-- loops-and-iteration.html -->
+  for (let i = 0; i < 6; i++) { // 코드블록 실행 이후 i값 증가
+    console.log(i)
+  }
+  ```
+
+  - ### for ... in
+  객체의 열거 가능한(enumerable) 속성(property)의 **키(key)**에 대해 반복
+  ```
+  const capitals = {
+    korea : '서울',
+    japan : '도쿄',
+    china : '베이징',
+  }
+  for (const capital in capitals) {
+    console.log(capital) // korea japan china
+  }
+  ```
+
+  - ### for ... of
+  반복 가능한(iterable) 객체(배열, 문자열 등)의 **값(value)**에 대해 반복
+  ```
+  const arr = ['a', 'b', 'c']
+  for (const elem of arr) {
+    console.log(elem) // a b c
+  }
+  ```
+
+---
+
+### 함수
+참조 자료형에 속하며 모든 함수는 Function Object
+```
+function name ([param[, param,[..., param]]]){
+  statements
+  return values
+}
+```
+- 선언식
+  ```
+  function funcName () {
+    statements
+  }
+  ```
+- 표현식
+  ```
+  const funcName = function () {
+    statements
+  }
+  ```
+
+- 호이스팅 되지않음
+- 함수 이름이 없는 익명 함수 사용가능
+- 예측 가능성 + 유연성 + 스코프 관리
+
+### 매개변수
+- 기본 함수 매개변수
+  ```
+  const greeting = function (name = 'Anonymous') {
+    return 'Hi ${name}'
+  }
+
+  greeting() // Hi Anonymous
+  ```
+- 나머지 매개변수
+  ```
+  const myFunc = function (param1, param2, ... restPrams){
+    return [param1, param2, restPrams]
+  }
+
+  myFunc(1, 2, 3, 4, 5) // [1, 2, [3, 4, 5]]
+  myFunc(1, 2) // [1, 2, []]
+  ```
+- 매개변수 > 인자 개수일 때 : 누락된 인자는 undefined로 할당
+- 매개변수 개수 < 인자 개수일 때 : 초과 입력한 인자는 사용x
+
+### 화살표 함수 표현식
+```
+const arrow = name => `hello, &{name}`
+```
