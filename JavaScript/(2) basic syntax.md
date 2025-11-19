@@ -120,7 +120,7 @@ console.log(obj2.age) // 40
   ```
 
   - ### for ... in
-  객체의 열거 가능한(enumerable) 속성(property)의 **키(key)**에 대해 반복
+  객체의 열거 가능한(enumerable) 속성(property)의 **키(key)** 에 대해 반복
   ```
   const capitals = {
     korea : '서울',
@@ -133,7 +133,7 @@ console.log(obj2.age) // 40
   ```
 
   - ### for ... of
-  반복 가능한(iterable) 객체(배열, 문자열 등)의 **값(value)**에 대해 반복
+  반복 가능한(iterable) 객체(배열, 문자열 등)의 **값(value)** 에 대해 반복
   ```
   const arr = ['a', 'b', 'c']
   for (const elem of arr) {
@@ -229,10 +229,12 @@ console.log(person.greeting())
 ```
 
 - this는 함수를 **호출하는 방법**에 따라 가리키는 대상이 달라짐
+
 | 호출 방법 | 대상 |
 | ----- | ----- |
 | 일반 함수에서의 단순호출 | 전역 객체 |
 | 객체에서의 메서드 호출 | 메서드를 호출한 객체 |
+
 ```
 const myObj = {
   data: 1,
