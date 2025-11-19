@@ -347,4 +347,49 @@ Key-Value 형태로 이루어진 자료 표기법
 - 배열 순회하며 각 객체의 name 속성 값 추출
 - 새로운 배열 반환하므로 다른 메서드를 체이닝할 수 있음
 - `const result2 = persons.map(function (person) {return person.name})`
+```
+const names = ['A', 'B', 'C']
+const result1 = names.map(function (name) {
+  return name.length
+})
+const result2 = names.map((name) => {
+  return name.length
+})
+```
+```
+const numbers = [1, 2, 3]
+const myCallbackFunc = function (number) {
+  return number * 2
+}
+const doubleNumber = numbers.map(myCallbackFunc)
+console.log(doubleNumber) // [2, 4, 6]
+```
 
+### `filter()`
+콜백 함수의 반환 값이 참인 요소들만 모아서 새로운 배열 반환
+```
+const languages = ['python', 'javascript', 'html', 'java']
+    const query = 'java'
+
+    const language = languages.filter(value => value.includes(query))
+    console.log(language) // ['javascript', 'java']
+```
+
+### `find()`
+콜백 함수의 반환 값이 참이면 해당 요소를 반환
+```
+const accounts = [
+      { name: 'sophia', balance: 1200 },
+      { name: 'john', balance: 50000 },
+      { name: 'tailer', balance: 24000 }
+    ]
+
+    const person = accounts.find(({balance}) => balance == 24000)
+    console.log(person)
+```
+
+### `some()`
+적어도 하나라도 콜백 함수 통과하면 true 반환 → 즉시 배열 순회 중지 / 모두 통과x하면 false 반환
+
+### `every()`
+모든 요소가 콜백 함수 통과하면 true 반환 / 하나라도 통과x하면 false 반환 → 즉시 배열 순회 중지
