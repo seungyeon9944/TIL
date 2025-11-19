@@ -193,3 +193,127 @@ function name ([param[, param,[..., param]]]){
 ```
 const arrow = name => `hello, &{name}`
 ```
+
+---
+
+### 객체 구조
+- 중괄호('{ }')를 이용해 작성
+- 중괄호 안에는 key:value 쌍으로 구성된 속성 여러개 작성 가능
+- key는 문자형만 허용
+
+### 속성 참조
+- 점('.') 표기법 또는 대괄호 ('[]') 표기법으로 속성에 접근
+  ex. `console.log(user.name)` 또는
+  `console.log(user['key with space'])`
+
+### 'in' 연산자
+- 속성이 객체에 존재하는지 여부 확인
+- 객체의 키나 배열의 인덱스 존재 여부 확인
+
+### 메서드 (Method)
+- 객체 속성에 정의된 함수
+- 메서드는 자신이 속한 객체의 다른 속성들에 접근할 수 있음 → this
+
+### `this`
+- 함수나 메서드를 호출한 객체를 가리키는 키워드
+- 함수가 **호출될 때 동적으로 결정**
+```
+const person = {
+  name: 'Alice',
+  greeting: function() {
+    return `Hello my name is ${this.name}`
+  },
+}
+
+console.log(person.greeting()) 
+```
+
+- this는 함수를 **호출하는 방법**에 따라 가리키는 대상이 달라짐
+| 호출 방법 | 대상 |
+| ----- | ----- |
+| 일반 함수에서의 단순호출 | 전역 객체 |
+| 객체에서의 메서드 호출 | 메서드를 호출한 객체 |
+```
+const myObj = {
+  data: 1,
+  myFunc: function() {
+    return this
+  }
+}
+
+console.log(myObj.myFunc()) // myObj
+```
+
+- forEach의 인자로 전달된 콜백 함수는 일반 함수로 호출 → this는 전역 객체를 가리킴
+```
+const myObj2 = {
+  numbers: [1, 2, 3],
+  myFunc: function () {
+    this.numbers.forEach(function (number) {
+      console.log(this) // window
+    })
+  }
+}
+
+console.log(myObj2.myFunc())
+```
+
+- forEach 문제를 해결하기 위해 **화살표 함수** 이용 (**자신만의 this를 갖지않음**)
+```
+const myObj3 = {
+  numbers: [1, 2, 3],
+  myFunc: function () {
+    this.numbers.forEach((number) =>
+{
+      console.log(this) // myObj3
+    })
+  }
+}
+
+console.log(myObj3.myFunc())
+```
+
+---
+
+추가 객체 문법
+### 1. 단축 속성 ⭐
+키 이름과 값으로 쓰이는 변수이름이 같으면 단축 구문 사용가능
+```
+const name = 'Alice'
+const age = 30
+const user = {
+  name,
+  age,
+} # {name: name, age: age}랑 같은 의미
+```
+
+### 2. 단축 메서드
+메서드 선언 시 function 키워드 생략 가능
+
+### 3. 계산된 속성 (computed property name)
+키가 대괄호 ([])로 둘러싸여 있는 속성
+
+### 4. 구조 분해 할당 (destructing assignment)
+배열 또는 객체를 분해하여 객체 속성을 변수에 쉽게 할당할 수 있는 문법
+
+### 5. 객체와 전개 구문 (Spread Syntax, ...)
+- "객체 복사"
+- **얕은 복사**에 활용 가능
+
+### 6. 유용한 객체 메서드
+- `Object.keys()`
+- `Object.values()`
+- `Object.entries()`
+
+### 7. Optional chaining ('?.')
+- 속성이 없는 중첩 객체에 접근하려고할때 에러 발생 없이 안전하게 접근
+- 연결된 속성으로 접근할 때 더 짧고 간단하게 작성, 어떤 속성이 필요핮니에 대한 보증이 확실하지 않은경우 내용을 편리하게 탐색할 수 있음
+```
+console.log(user.address.street) // Uncaught TypeError
+console.log(user.address?.street) // undefined
+```
+
+---
+
+### JSON (JavaScript Object Notation)
+Key-Value 형태로 이루어진 자료 표기법
