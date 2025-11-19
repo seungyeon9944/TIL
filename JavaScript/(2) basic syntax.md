@@ -317,3 +317,32 @@ console.log(user.address?.street) // undefined
 
 ### JSON (JavaScript Object Notation)
 Key-Value 형태로 이루어진 자료 표기법
+
+### 배열
+순서가 있는 데이터 집합 저장하는 자료구조
+- `push( )`
+- `pop( )`
+- `unshift( )` : 배열 앞에 요소를 추가, 배열이 클수록 성능 저하
+- `shift( )`
+
+### Array Helper Methods
+- 배열의 각 요소를 **순회**하며 각 요소에 대해 함수(**콜백함수**) 호출
+- `forEach( )` : 파이썬의 map함수와 유사, 반환 값이 없음
+- `map( )` : 배열의 모든요소에 콜백함수 호출, 함수 호출 결과를 모다 **새로운 배열 반환**
+- `reduce( )`
+
+### 콜백 함수 (Callback function)
+- 다른 함수에 인자로 전달되는 함수
+- 특정 작업이 완료된 후, 시스템에 의해 나중에 호출되는 함수
+
+### `forEach()`
+- 배열의 모든 요소 반복하며 콜백함수 호출
+- `arr.forEach(callback(item[, index[, array]]))`
+- item + index + arrary 3가지 매개변수로 구성됨
+- 반환값 : undefined
+
+### `map()`
+- 배열 순회하며 각 객체의 name 속성 값 추출
+- 새로운 배열 반환하므로 다른 메서드를 체이닝할 수 있음
+- `const result2 = persons.map(function (person) {return person.name})`
+
