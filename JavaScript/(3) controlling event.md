@@ -29,6 +29,15 @@ button.addEventListener('click', handleClick)
 이벤트가 정학히 어디서 발생했는지 접근할 수 있는 방법
 ### 1. `event.currentTarget`
 '현재' 요소로 항상 이벤트 핸들러가 연결된 요소만을 참조, 'this'와 같음
+```
+const inputTag = document.querySelector("#text-input")
+const h1Tag = document.querySelector("h1")
+
+const inputHandler = function(event){
+  h1Tag.textContent = event.currentTarget.value // input에 입력한 값을 h1 태그에 지정
+}
+inputTag.addEventListener("input", inputHandler)
+```
 
 ### 2. `event.target`
 이벤트가 발생한 가장 안쪽의 요소를 참조, 실제 이벤트가 시작된 요소로 버블링이 진행되어도 변하지x
@@ -39,3 +48,8 @@ button.addEventListener('click', handleClick)
 버블링과 반대로 이벤트가 하위로 전파되는 단계.
 - table의 하위 요소 td를 클릭하면 이벤트는 먼저 **최상위 요소부터 아래로 전파** (캡처링)
 - 실제 이벤트가 발생한 지점(event.target)에서 실행된 후 **다시 위로 전파** (버블링)
+
+---
+
+### `.preventDefault()`
+해당 이벤트에 대한 기본 동작 실행하지 않도록 지정
