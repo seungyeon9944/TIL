@@ -189,3 +189,12 @@ Inner Display 타입 -> 박스 *내부의 요소들*이 어떻게 배치될지
   - `flex-grow` : 남는 행 여백을 비율에 따라 각 flex item에 분배
   - `flex-basis` : flex-item의 초기 크기값
   - `order`
+
+---
+
+### CSS animation
+JS를 사용하지 않고도 복잡한 움직임을 구현할 수 있게 해주는 CSS의 기능
+- 시작부터 끝까지 애니메이션의 전반적인 규칙 정의
+- animation-name
+- animation-duration
+- animation-timing-function (속도 변화 - 느리게, 시작/끝 등)

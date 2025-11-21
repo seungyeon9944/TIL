@@ -53,3 +53,20 @@ inputTag.addEventListener("input", inputHandler)
 
 ### `.preventDefault()`
 해당 이벤트에 대한 기본 동작 실행하지 않도록 지정
+(이벤트 취소할 때 !)
+
+---
+
+### Input event
+- 요소의 value(값)이 변경될 때
+- 붙여넣기에도 반응하는 유효성 검사 기능
+
+### Keyup event
+- 키보드 키가 눌렸다가 떼어질 때
+- 특정 키를 눌렀을 때만 동작 수행
+
+### Drag Event
+요소에서 발생하는 이벤트
+- dragstart 이벤트
+- drag 이벤트
+- dragend 이벤트
