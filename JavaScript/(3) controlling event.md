@@ -70,3 +70,10 @@ inputTag.addEventListener("input", inputHandler)
 - dragstart 이벤트
 - drag 이벤트
 - dragend 이벤트
+
+### Scroll Event
+- window.scrollY
+  - 브라우저 창의 **수직 스크롤 위치**
+  - 권장하는 표준 속성
+- element.scrollHeight
+  - 요소에 포함된 **전체 콘텐츠의 높이**로 스크롤되지않은 부분까지 포함
