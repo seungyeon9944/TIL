@@ -21,7 +21,7 @@ World Wide Web, 전 세계적인 정보 공유 시스템
 ### 식별자(변수명) 작성 규칙
 - 반드시 문자, 달러('$'), 밑줄('_')로 시작
 - 대소문자 구분
-- 예약어 (for, if, function 등) 사용X
+- 예약어 (for, if, function 등)를 변수명으로 사용X
 
 ### 식별자(변수명) Naming Convention
 - 카멜 케이스 (camelCase) : 변수, 객체, 함수에 사용
@@ -76,7 +76,7 @@ console.log(x) // 1
 ### DOM
 - Document Object Model, 웹 페이지를 구조화된 객체로 제공하여 프로그래밍 언어가 페이지 구조에 접근할 수 있는 방법 제공
 - **DOM tree** : HTML 태그를 나타내는 elements의 node는 문서의 구조를 결정
-- 즉 문서의 요소들을 객체로 제공하여 다른 프로그래밍 언어에서 접근하고 조작할 수 있는 방법을 제공하는 API 
+- 즉 **문서의 요소들을 객체로 제공**하여 다른 프로그래밍 언어에서 **접근하고 조작할 수 있는 방법을 제공**하는 API 
 - **웹 페이지를 동적으로 만들기 == 웹 페이지를 조작하기** by 조작하고자 하는 요소 **선택** → 속성 **조작** 
 
 ---
@@ -84,6 +84,9 @@ console.log(x) // 1
 ### 선택 메서드
 ### `document.querySelector(selector)`
 제공된 선택자(selector)와 일치하는 첫번째 요소 한 개 선택하여 반환 (없으면 null 반환)
+- `document.querySelector('.content')` // 클래스 선택자
+- `document.querySelector('#id')` // 아이디 선택자
+- `document.querySelector('ul > li')` // li 태그선택자
 
 ### `document.querySelectorAll(selector)`
 제공된 선택자(selector)와 일치하는 여러 element 선택하여 NodeList 반환
@@ -100,7 +103,8 @@ console.log(x) // 1
     ### `element.classList.remove()`
     지정한 클래스 값 제거
     ### `element.classList.toggle()`
-    클래스가 존재한다면 제거 + false 반환 
+    클래스가 존재한다면 제거 + false 반환 / 존재하지않으면 클래스 추가 + true 반환
+    
   - 1.2 일반 속성 조작
     ### `Element.getAttribute()`
     해당 요소에 지정된 값 반환 (조회)
