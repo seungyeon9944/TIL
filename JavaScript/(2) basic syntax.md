@@ -28,22 +28,22 @@ console.log(text) // BAR
   const message = `홍길동은 ${age}세입니다.`
   ```
 
-  ### null
+  ### 1-3. null
   프로그래머가 의도적으로 '값이 없음'을 나타냄
 
-  ### undefined
+  ### 1-4. undefined
   '값이 할당되지 않음'
 
   ![javascript-null](javascript-null.png)
 
-  ### Boolean
+  ### 1-5. Boolean
   참과 거짓을 나타내는 논리적인 자료형
   | 데이터타입 | true | false |
   | ----- | ----- | ----- |
   | undefined | X | 항상 false | 
   | null | X | 항상 false |
   | Number | 나머지 모든 경우 | 0, -0, NaN |
-  | String | 나머지 모든 경우 | ' '(빈 문자열) |
+  | String | 나머지 모든 경우 | ''(빈 문자열) |
   ```
   console.log(Boolean([])); // true
   console.log(Boolean({})); // true
@@ -79,8 +79,8 @@ console.log(obj2.age) // 40
     ```
   - 감소 연산자 ('--')
   - 비교 연산자 `'Z' < 'a' // true`
-  - 동등 연산자 (==) `console.log('1' == 1) // true`
-  - 일치 연산자 (===) `console.log('1' === 1) // false`
+  - 동등 연산자 (==, 값만 비교) `console.log('1' == 1) // true`
+  - 일치 연산자 (===, **값+타입** 다 비교) `console.log('1' === 1) // false`
   - 논리 연산자 (&&, ||, !)
     ```
     1 & 0 // 0
@@ -130,6 +130,11 @@ console.log(obj2.age) // 40
   for (const capital in capitals) {
     console.log(capital) // korea japan china
   }
+
+  const arr = ['a', 'b', 'c']
+  for (const i in arr) {
+    console.log(i) // 0, 1, 2
+  }
   ```
 
   - ### for ... of
@@ -137,7 +142,7 @@ console.log(obj2.age) // 40
   ```
   const arr = ['a', 'b', 'c']
   for (const elem of arr) {
-    console.log(elem) // a b c
+    console.log(elem) // a, b, c
   }
   ```
 
@@ -151,22 +156,19 @@ function name ([param[, param,[..., param]]]){
   return values
 }
 ```
-- 선언식
+- 선언식 (호이스팅o, 구조+가독성)
   ```
   function funcName () {
     statements
   }
   ```
-- 표현식
+
+- 표현식 (호이스팅x, 익명함수o, 예측 가능성 + 유연성 + 스코프 관리)
   ```
   const funcName = function () {
     statements
   }
   ```
-
-- 호이스팅 되지않음
-- 함수 이름이 없는 익명 함수 사용가능
-- 예측 가능성 + 유연성 + 스코프 관리
 
 ### 매개변수
 - 기본 함수 매개변수
@@ -188,6 +190,28 @@ function name ([param[, param,[..., param]]]){
   ```
 - 매개변수 > 인자 개수일 때 : 누락된 인자는 undefined로 할당
 - 매개변수 개수 < 인자 개수일 때 : 초과 입력한 인자는 사용x
+
+### Spread syntax '...'
+배열이나 문자열처럼 반복가능한 항목들을 개별 요소로 펼침
+- 인자 확장 (함수 호출 시)
+```
+function myFunc(x, y, z){
+  return x + y + z
+}
+let numbers = [1, 2, 3]
+console.log(myFunc(...numbers)) // 6
+```
+
+- 나머지 매개변수 (압축)
+```
+function myFunc2(x, y, ...restArgs) {
+  return [x, y, restArgs]
+}
+
+console.log(myFunc(1, 2)) // [1, 2, []]
+```
+
+- 배열과의 활용
 
 ### 화살표 함수 표현식
 ```
@@ -297,18 +321,19 @@ const user = {
 
 ### 4. 구조 분해 할당 (destructing assignment)
 배열 또는 객체를 분해하여 객체 속성을 변수에 쉽게 할당할 수 있는 문법
+`const firstName = userInfo.firstname`와 `const { firstName } = userInfo`
 
 ### 5. 객체와 전개 구문 (Spread Syntax, ...)
 - "객체 복사"
 - **얕은 복사**에 활용 가능
 
 ### 6. 유용한 객체 메서드
-- `Object.keys()`
-- `Object.values()`
-- `Object.entries()`
+- `Object.keys()` : 키값들을 리스트로 변환
+- `Object.values()` : Value값들을 리스트로 변환
+- `Object.entries()` : 키와 Value값들을 한쌍으로 묶은 리스트로 변환
 
 ### 7. Optional chaining ('?.')
-- 속성이 없는 중첩 객체에 접근하려고할때 에러 발생 없이 안전하게 접근
+- 속성이 없는 중첩 객체에 접근하려고 할 때 에러 발생 없이 안전하게 접근
 - 연결된 속성으로 접근할 때 더 짧고 간단하게 작성, 어떤 속성이 필요핮니에 대한 보증이 확실하지 않은경우 내용을 편리하게 탐색할 수 있음
 ```
 console.log(user.address.street) // Uncaught TypeError
@@ -322,10 +347,10 @@ Key-Value 형태로 이루어진 자료 표기법
 
 ### 배열
 순서가 있는 데이터 집합 저장하는 자료구조
-- `push( )`
-- `pop( )`
-- `unshift( )` : 배열 앞에 요소를 추가, 배열이 클수록 성능 저하
-- `shift( )`
+- `push( )` : **배열 끝**에 요소 추가
+- `pop( )` : **배열 끝** 요소 제거
+- `unshift( )` : **배열 앞**에 요소를 추가, 배열이 클수록 성능 저하
+- `shift( )` : **배열 앞** 요소 제거, 제거한 요소 반환, 배열이 클수록 성능 저하
 
 ### Array Helper Methods
 - 배열의 각 요소를 **순회**하며 각 요소에 대해 함수(**콜백함수**) 호출
@@ -344,8 +369,8 @@ Key-Value 형태로 이루어진 자료 표기법
 - 반환값 : undefined
 
 ### `map()`
-- 배열 순회하며 각 객체의 name 속성 값 추출
-- 새로운 배열 반환하므로 다른 메서드를 체이닝할 수 있음
+- 배열 순회하며 각 객체의 name 속성 값 추출해서 **새로운 배열 반환**
+- 새로운 배열 반환하므로 다른 메서드를 **체이닝**할 수 있음
 - `const result2 = persons.map(function (person) {return person.name})`
 ```
 const names = ['A', 'B', 'C']
