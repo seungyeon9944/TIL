@@ -40,7 +40,7 @@ inputTag.addEventListener("input", inputHandler)
 ```
 
 ### 2. `event.target`
-이벤트가 발생한 가장 안쪽의 요소를 참조, 실제 이벤트가 시작된 요소로 버블링이 진행되어도 변하지x
+이벤트가 발생한 **가장 안쪽의 요소**를 참조, 실제 이벤트가 시작된 요소로 버블링이 진행되어도 변하지x
 
 ---
 
