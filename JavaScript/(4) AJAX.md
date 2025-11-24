@@ -28,7 +28,7 @@ const asyncTask = function (callBack) {
 
 Ajax를 활용한 클라이언트 서버 간 동작 :
 
-**XHR 객체 생성 및 요청 -> 응답 데이터 생성 -> JSON 데이터 응답 -> Promise 객체를 활용해 DOM 조작**
+**XHR 객체 생성 및 요청 → 응답 데이터 생성 → JSON 데이터 응답 → Promise 객체를 활용해 DOM 조작**
 
 ### 비동기 콜백
 연쇄적으로 발생하는 비동기 작업을 순차적으로 동작할 수 있게 함
