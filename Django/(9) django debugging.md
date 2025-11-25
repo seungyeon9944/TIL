@@ -5,22 +5,21 @@ Django의 `ModelForm`을 사용하여 기존 객체를 수정하려면, 폼을 �
 
 ```
 def update(request, pk):
-todo = Todo.objects.get(pk=pk)
-if request.method == 'POST':
-form = TodoForm(request.POST, request.FILES, instance=todo)
-if form.is_valid():
-     todo = form.save(commit=False)
-     todo.user = request.user
-     todo.save()
-		 return redirect('todos:detail', pk=pk)
-else:
+  todo = Todo.objects.get(pk=pk)
+  if request.method == 'POST':
+    form = TodoForm(request.POST, request.FILES, instance=todo)
+    if form.is_valid():
+      todo = form.save(commit=False)
+      todo.user = request.user
+      todo.save()
+		  return redirect('todos:detail', pk=pk)
+  else:
     form = TodoForm(instance=todo)
-context = {
+  context = {
     'form': form,
     'todo': todo
-}
-return render(request, 'todos/update.html', context)
-
+  }
+  return render(request, 'todos/update.html', context)
 ```
 
 - 할일 작성 버튼 출력 제어 (로그인하지 않은 사용자에게는 표시하지 않게 하기)
