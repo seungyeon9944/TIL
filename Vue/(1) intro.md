@@ -39,3 +39,42 @@ CSR과 SPA의 단점
 - 컴포넌트 기반 아키텍처
 - 간결한 문법과 직관적인 API
 - 유연한 스케일링
+
+### Component
+- 재사용 가능한 코드 블록
+- UI를 독립적이고 재사용 가능한 일부분으로 분할하고 각 부분을 개별적으로 다룰 수 있음
+
+Vue Application 생성
+1. CDN 작성
+2. Application insatnce - 구조분해할당 문법으로 Vue 객체의 createApp 함수 할당. 
+  ```
+  const { createApp } = Vue
+  ```
+3. 모든 애플리케이션은 새 Application instance를 생성하는 것으로 시작. 모든 App에는 다른 컴포넌트들을 하위 컴포넌트로 포함할 수 있는 Root (최상위) 컴포넌트가 필요 (현재는 단일 컴포넌트)
+  ```
+  const app = createApp(
+  {
+    setup() {}
+  }
+  )
+  ```
+4. 앱 연결 (Mounting the App)
+  ```
+  app.mount('#app')
+  ```
+5. 컴포넌트의 상태는 setup() 함수 내에서 선언되어야 하며 **객체를 반환해야 함**
+  ```
+  return {
+    message
+  }
+  ```
+6. 'v-on' directive를 사용하여 DOM 이벤트 수신
+  ```
+  <button v-on: click="increment">버튼</button>
+  ...
+  ```
+
+### `ref()`
+반응형 상태(데이터)를 선언하는 함수 (Declaring Reactive State)
+- .value 속성이 있는 ref 객체로 **래핑(wrapping)** 하여 반환하는 함수
+- ref로 선언된 변수의 값이 변경되면 해당 값을 사용하는 템플릿에서 자동으로 업데이트
