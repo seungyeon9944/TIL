@@ -46,15 +46,21 @@ CSR과 SPA의 단점
 
 Vue Application 생성
 1. CDN 작성
+  ```
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  ```
 2. Application insatnce - 구조분해할당 문법으로 Vue 객체의 createApp 함수 할당. 
   ```
-  const { createApp } = Vue
+  const { createApp, ref } = Vue
   ```
 3. 모든 애플리케이션은 새 Application instance를 생성하는 것으로 시작. 모든 App에는 다른 컴포넌트들을 하위 컴포넌트로 포함할 수 있는 Root (최상위) 컴포넌트가 필요 (현재는 단일 컴포넌트)
   ```
   const app = createApp(
   {
-    setup() {}
+    setup() {
+      const name = ref('홍길동')
+      const age = ref('30') 
+    }
   }
   )
   ```
@@ -65,7 +71,8 @@ Vue Application 생성
 5. 컴포넌트의 상태는 setup() 함수 내에서 선언되어야 하며 **객체를 반환해야 함**
   ```
   return {
-    message
+    name,
+    age
   }
   ```
 6. 'v-on' directive를 사용하여 DOM 이벤트 수신
