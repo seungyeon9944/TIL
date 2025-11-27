@@ -49,4 +49,101 @@ HTML의 **id 속성 값**을 vue의 **dynamicId 속성과 동기화**되도록 �
 <button :[key]="myValue"></button>
 ```
 
+---
 
+### Class and Style Bindings (클래스와 스타일 바인딩)
+- class와 style은 모두 HTML 속성이므로 다른 속성과 마찬가지로 **v-bind** 사용하여 동적으로 할당
+- **객체** 또는 **배열**을 활용하여 작성할 수 있도록 함
+
+### 1.1 Binding HTML Classes: Binding to Objects
+```
+const isActive = ref(true)
+<div :class="{ active: isActive }">Text</div>
+```
+
+### 1.2 Binding HTML Classes: Binding to Arrays
+```
+const activeClass = ref('active')
+const infoClass = ref('text-primary')
+
+<div :class="[activeClass, infoClass]">Text</div>
+```
+
+### 2.1 Binding Inline Styles: Binding to Objects
+```
+const activeColor = ref('crimson')
+const fontSize = ref(50)
+
+<div :style="{ color: activeColor, fontSize: fontSize + 'px' }">Text</div>
+```
+
+### 2.2 Binding Inline Styles: Binding to Arrays
+```
+const styleObj2 = ref({
+  color: 'blue',
+  border: '1px solid black'
+})
+
+<div :style="[styleObj, styleObj2]">Text</div>
+```
+
+### v-on
+- DOM 요소에 이벤트 리스너를 연결 및 수신
+`v-on:event="handler"`
+
+- v-on shorthand (약어)
+`@event="handler"`
+
+1. Inline handlers
+```
+const count = ref(0)
+
+<button @click="count++">Add 1</button>
+<p>Count: {{ count }}</p>
+```
+`<button @click="warning('경고입니다',$event)">Warning</button>`처럼 **$event** 변수를 사용하여 메서드에 전달
+
+2. Method Handlers
+**@click="myFunc"**처럼 괄호 없이 메서드 이름만 연결하면 핸들러의 첫번째 인자로 DOM의 EVENT 객체가 자동으로 전달됨
+```
+const myFunc = function (event) {
+  count.value += 1
+}
+
+<button @click="myFunc">Hello</button>
+```
+
+- Event Modifiers
+stop, prevent, self 등 다양한 modifier로 코드를 메서드 안에 직접 작성할 필요가 없도록 함
+`<form @submit.prevent="onSubmit">...</form>`
+
+- Key Modifiers
+```
+<input @keyup.enter="onSubmit">
+<textarea @keydown.ctrl.enter="submitComment"></textarea>
+```
+
+### Form Input Bindings (폼 입력 바인딩)
+form을 처리할 때 사용자가 input에 입력하는 값을 실시간으로 JavaScript 상태에 동기화해야 하는 경우 (양방향 바인딩)
+
+### v-model
+form input 요소 또는 컴포넌트에서 양방향 바인딩을 만듦
+- 사용자 입력 데이터와 반응형 변수를 실시간 동기화
+```
+const inputText2 = ref('')
+<p>{{ inputText2 }}</p>
+<input v-model="inputText2">
+```
+- Checkbox와 활용 `<input type="checkbox" id="checkbox" v-model="checked">`
+- Select와 활용 
+```
+const selected = ref('')
+
+<div>Selected: {{ selected }}</div>
+<select v-model = "selected">
+  <option disabled value="">Please select one</option>
+  <option>A</option>
+  <option>B</option>
+  <option>C</option>
+</select>
+```
