@@ -1,7 +1,7 @@
 Django 디버깅 과목평가 대비 ! ✏️ 헷갈리는 것들 정리
 
 - 할일 수정 기능 오류 디버깅
-Django의 `ModelForm`을 사용하여 기존 객체를 수정하려면, 폼을 초기화할 때 **수정하고자 하는 기존 객체**를 `instance` 인수로 반드시 넘겨주어야 합니다. 이 인수가 없으면 `form.save()`는 새로운 데이터로 **새로운 객체를 생성**하게 됩니다.
+Django의 `ModelForm`을 사용하여 기존 객체를 수정하려면, 폼을 초기화할 때 **수정하고자 하는 기존 객체**를 `instance` 인수로 반드시 넘겨주어야 함 ! 이 인수가 없으면 `form.save()`는 새로운 데이터로 **새로운 객체를 생성**하게 됨
 
 ```
 def update(request, pk):
@@ -22,7 +22,7 @@ def update(request, pk):
   return render(request, 'todos/update.html', context)
 ```
 
-- 할일 작성 버튼 출력 제어 (로그인하지 않은 사용자에게는 표시하지 않게 하기)
+- 할일 작성 버튼 출력 제어 (**로그인하지 않은 사용자에게는 표시하지 않게** 하기)
 
 ```
 {% if request.user.is_authenticated %}
@@ -30,7 +30,7 @@ def update(request, pk):
 {% endif %}
 ```
 
-- 할일 수정 권한검사 (요청자 == 작성자인지 확인)
+- 할일 수정 권한검사 (**요청자 == 작성자인지** 확인)
 
 ```
 def update(request, pk):
@@ -82,7 +82,7 @@ def update(request, pk):
 {% endblock content %}
 ```
 
-- 기본 이미지 표시 누락
+- 기본 이미지 표시 누락 .. 헷갈림 ㅜ.ㅜ
 
 `<img src = “{% **static** ‘(절대경로)’ %}” >`
 
