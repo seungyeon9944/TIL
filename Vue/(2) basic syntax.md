@@ -147,3 +147,96 @@ const selected = ref('')
   <option>C</option>
 </select>
 ```
+
+---
+
+### computed( )
+"계산된 속성"을 정의하는 함수
+- 템플리 표현식을 단순하게, 불필요한 반복 연산 줄여줌
+- 한번 계산된 값은 캐싱(임시 저장)되어 성능에 유리함
+```
+const { createApp, ref, computed } = Vue
+
+const restOfTodos = computed(() => {
+  return todos.value.length > 0 ? '아직 남았다'  : '퇴근!'
+})
+```
+- 반환되는 값은 계산된 **ref (computed ref)**이며 계산된 결과를 .value로 참조 가능
+- 의존된 반응형 데이터를 **자동으로 추적**, 결과를 캐시
+- 의존하는 반응형 데이터가 **변경될 때만 재평가**
+
+### 캐시 (Cache)
+데이터나 결과를 일시적으로 저장해두는 임시 저장소
+- 페이지 일부 데이터를 브라우저 캐시에 저장 후 같은 페이지에 다시 요청 시 모든 데이터를 다시 응답받는게 아닌 ! **일부 캐시 된 데이터 사용**하여 더 빠르게 웹 페이지 렌더링
+
+
+#### computed VS method
+| computed | method |
+| ----- | ----- |
+| 의존된 데이터가 변경되면 자동 업데이트 | 호출해야만 실행됨 |
+| 동일 의존성 가진 여러 곳에서 계산 결과 캐싱하여 중복 계산 방지 | 데이터 의존여부 관계없이 항상 동일한 결과 반환 |
+
+---
+
+### v-if
+표현식 값의 true/false를 기반으로 요소를 조건부로 렌더링
+- 조건이 참이면 HTML 요소를 화면에 보여줌
+- 조건이 거짓이면 해당 요소는 DOM에서 완전히 제거되어 안보임
+```
+const name = ref('Cathy')
+
+<template v-if="name === 'Cathy'">
+  <div>Cathy입니다</div>
+  <div>나이는 30살입니다</div>
+</template>
+```
+
+### v-show
+표현식 값의 true/false를 기반으로 요소의 가시성을 전환
+- v-if와 다르게 **CSS의 display 속성**을 none으로 바꿔 화면에서만 안 보이게 숨김
+```
+const isShow = ref(false)
+
+<div v-show="isShow">v-show</div>
+<div style="display: none;">v-show</div>
+```
+
+---
+
+### v-for
+**소스 데이터**를 기반으로 요소 또는 템플릿 블록을 반복 렌더링
+- alias in expression 형식의 구문 사용
+- 객체는 key-value 쌍으로 이루어져있음
+- 각 요소를 key를 활용하여 고유한 값으로 식별
+```
+<div v-for="item in items" :key="item.id">
+  {{ item.name }}
+</div>
+```
+
+#### v-for와 v-if 
+v-if가 더 높은 우선순위 가지므로 v-for 범위의 todo 데이터를 v-if에서 사용할 수 없음 ! 그리고 동일 요소에 v-for와 v-if를 함께 사용하면 안됨
+
+  sol 1) **computed 활용**하여 이미 필터링 된 목록 반환하여 반복하도록 설정하여 해결
+  ```
+  const completeTodos = computed(() => {
+    return todos.value.filter((todo) => !todo.isComplete)
+  })
+
+  <ul>
+    <li v-for="todo in completeTodos" :key="todo.id">
+      {{ todo.name }}
+    </li>
+  </ul>
+  ```
+
+  sol 2) v-for와 template 요소를 사용하여 **v-if 위치 이동**
+  ```
+  <ul>
+    <template v-for="todo in todos" : key="todo.id">
+      <li v-if="!todo.isComplete">
+        {{ todo.name }}
+      </li>
+    </template>
+  </ul>
+  ```
