@@ -33,13 +33,13 @@ but 모듈 간이 의존성이 깊어지면서 성능 병목 현상 발생 → B
 ### Vue Project 기본 구조
 ![Vue project 기본구조](vue_project_structure.png)
 
-src 디렉토리
-![Vue src 구조](vue_project_src.png)
-컴포넌트, 스타일, 라우팅 등 프로젝트의 **핵심 코드 관리**
+src 디렉토리 : 컴포넌트, 스타일, 라우팅 등 프로젝트의 **핵심 코드 관리**
 - src/assets
 - src/components
 - src/App.vue
 - src/main.js
+
+![Vue src 구조](vue_project_src.png)
 
 ---
 
