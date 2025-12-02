@@ -13,6 +13,30 @@
 ### Build
 프로젝트 소스 코드 최적화, 번들링하여 배포할 수 있는 형식으로 변환
 
+---
+
+### Vue Project 생성하는 법
+- Vue Project (Application) 생성
+```
+$ npm create vue@latest
+```
+
+- 프로젝트명 설정
+```
+# Project name (target directory):
+vue-project
+```
+
+- 프로젝트에 추가할 설정 선택, 실험용 기능 설치할지 물어봄
+
+- 프로젝트 폴더 이동, 패키지 설치
+```
+$ cd vue-project
+$ npm install
+$ npm run dev
+```
+---
+
 ### Node Package Manager (NPM)
 Node.js의 기본 패키지 관리자
 
