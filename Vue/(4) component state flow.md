@@ -1,0 +1,17 @@
+### Props
+**부모** 컴포넌트로부터 **자식** 컴포넌트로 데이터를 전달하는데 사용되는 사용자 지정 특성
+- 반대는 불가능 (자식 컴포넌트 내부에서 props 변경하려고 시도해서도 x, 불가능)
+- 모든 props는 **하향식 단방향 바인딩** 형성 (one-way-down binding)
+- props 선언하는 법
+1. vue 프로젝트 생성
+2. 초기 생성된 컴포넌트 모두 삭제
+3. src/assets 내부 파일 모두 삭제
+4. main.js의 `import './assets/main.css'` 삭제
+5. App > Parent > ParentChild 컴포넌트 관계 작성
+- App.vue의 template 안의 div에는 `<Parent />`, script 안에는 `import Parent from '@/components/Parent.vue'`
+- Parent.vue의 template 안의 div에는 `<Parentchild />`, script 안에는 `import ParentChild from '@/components/ParentChild.vue'`
+6. 부모 컴포넌트 Parent에서 자식 컴포넌트 ParentChild에 보낼 props 작성 `<ParentChild my-msg="message" />`
+7. Props 선언 (script setup 안에 `defineProps()`, 문자열 배열을 사용하거나 객체를 사용할 수 있음)
+
+- 한단계 더 props 내려 보내기
+ParentChild 컴포넌트에서 **Parent로부터 props인 myMsg**을 ParentGrandChild에게 전달 !
