@@ -15,3 +15,9 @@
 
 - 한단계 더 props 내려 보내기
 ParentChild 컴포넌트에서 **Parent로부터 props인 myMsg**을 ParentGrandChild에게 전달 !
+
+- Props Name Casing (Props 이름 컨벤션)
+    - 부모 템플릿에서 전달 시 (HTML 속성) : kebab-case (`my-msg`)
+    - 자식 스크립트에서 선언 시 (JavaScript) : camelCase (`myMsg`)
+- Static Props와 Dynamic Props
+v-bind를 사용하여 **동적으로 할당된 props** 사용 가능
