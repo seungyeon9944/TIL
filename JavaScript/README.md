@@ -16,6 +16,7 @@ h1.className = 'main'; // h1 요소의 class attribute가 'main'으로 초기화
 h1.classList.add('big');
 ```
 <br/>
+
 ---
 <br/>
 
@@ -65,6 +66,7 @@ console.log(user['key with space']) // true
 - this는 메서드를 호출한 객체를 가리킴 !
 
 <br/>
+
 ---
 <br/>
 
@@ -88,6 +90,7 @@ const { email } = user; // user 객체의 email 속성값이 email 변수값에 
 - **map**(callback(**item, index, array**))
 
 <br/>
+
 ---
 <br/>
 
@@ -109,6 +112,7 @@ console.log(key)
 - 콜백함수 : 다른 함수에 인자로 전달되는 함수 (map은 새로운 배열 반환)
 
 <br/>
+
 ---
 <br/>
 
