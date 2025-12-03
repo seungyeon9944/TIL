@@ -21,3 +21,16 @@ ParentChild 컴포넌트에서 **Parent로부터 props인 myMsg**을 ParentGrand
     - 자식 스크립트에서 선언 시 (JavaScript) : camelCase (`myMsg`)
 - Static Props와 Dynamic Props
 v-bind를 사용하여 **동적으로 할당된 props** 사용 가능
+
+---
+
+### $ emit()
+자식 컴포넌트가 이벤트를 발생시켜 부모 컴포넌트로 데이터를 전달하는 메서드 (props와 반대로 **올라가는** 이벤트 만듦)
+- `$emit(event, _args)` 형태로 구성됨
+- $emit을 사용하여 템플릿 표현식에서 직접 사용자 정의 이벤트 발신
+- 부모 컴포넌트에서는 v-on (또는 @)을 사용하여 이벤트 수신
+
+### defineEmits( )
+`<script setup>` 내에서 이벤트 발신하기 위한 **emit 함수 반환**
+
+**이벤트 인자 (Event Arguments)** : ParentChild에서 이벤트 발신하여 Parent로 추가 인자 전달, ParentChild에서 발신한 이벤트 Parent에서 수신.
