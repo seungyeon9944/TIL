@@ -6,10 +6,10 @@
 유저가 URL을 통한 페이지 변화 감지x, 페이지가 무엇을 렌더링 중인지 상태 x, 뒤로가기기능x
 
 ### Vue Router
-SPA에서 페이지 이동 기능을 구현할 때 사용. <router-link>와 <router-view>라는 핵심 컴포넌트 제공
+SPA에서 페이지 이동 기능을 구현할 때 사용. `<router-link>`와 `<router-view>`라는 핵심 컴포넌트 제공
 
 - 라우팅 기본 동작 순서
-1. index.js에 **라우터 관련 설정** 작성
+1. `index.js`에 **라우터 관련 설정** 작성
 2. RouterLink에 **index에 정의한 주소 값** 작성 (ex. 'to' 속성으로 정의한 path 사용)
 3. RouterLink 클릭 시 경로와 일치하는 컴포넌트가 **RouterView에서 렌더링**
 
@@ -36,7 +36,7 @@ const router = createRouter({
     ]
 })
 ```
-- 객체의 key 이름과 index.js에서 지정한 매개변수 이름이 같도록 UserView 컴포넌트로 이동하기 위한 RouterLInk 작성
+- 객체의 key 이름과 `index.js`에서 지정한 매개변수 이름이 같도록 UserView 컴포넌트로 이동하기 위한 RouterLInk 작성
 ```
 <!-- App.vue -->
 
@@ -80,6 +80,7 @@ const userId = ref(route.params.id)
 
 ### Programmatic Navigation
 `<RouterLink>`를 사용하는 대신, **JavaScript 코드를 사용**해 페이지를 이동시킴
+
 router의 메서드
 1. `router.push()`
 - 다른 위치로 이동하기
@@ -108,15 +109,15 @@ router의 메서드
 Vue router를 통해 특정 URL에 접근할 때 다른 URL로 redirect를 하거나 취소하여 내비게이션 보호
 1. Globally (전역 가드)
 - 애플리케이션 전역에서 동작, 작성위치 : **index.js**
-- beforeEach( )
-- beforeResolve( )
-- afterEach( )
+- `beforeEach()`
+- `beforeResolve()`
+- `afterEach()`
 
 2. Per-route (라우터 가드)
 - 특정 route에서만 동작, 작성위치 : **index.js의 각 routes**
-- beforeEnter( )
+- `beforeEnter()`
 
 3. In-component (컴포넌트 가드)
 - 특저어 컴포넌트 내에서만 동작, 작성위치 : **각 컴포넌트의 script**
-- onBeforeRouteLeave( )
-- onBeforeRouteUpdate( )
+- `onBeforeRouteLeave()`
+- `onBeforeRouteUpdate()`
